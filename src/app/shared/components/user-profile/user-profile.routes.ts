@@ -4,7 +4,7 @@ import { UserProfileComponent } from './user-profile.component';
 export const UserProfileRoutes: Routes = [
 
     {
-        path:'update-profile',
+        path:'',
         component: UserProfileComponent,
     }
 
