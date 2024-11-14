@@ -8,6 +8,12 @@ export const routes: Routes = [
     path:'auth',
     loadChildren: () =>
       import('./pages/auth/auth.routes').then((a) => a.authRoutes)
+  },
+
+  {
+    path:'participante',
+    loadChildren: () =>
+      import('./pages/participante/participante.routes').then((p) => p.participanteRoutes)
   }
 
 ];
