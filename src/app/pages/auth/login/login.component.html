@@ -1,0 +1,65 @@
+  <body class="body-login d-flex flex-column min-vh-100">
+  <div class="wrapper-login">
+    <main>
+      <div class="kanit-light d-grid gap-2 d-md-flex justify-content-end pe-4 mt-4">
+        <a href="/index.html"><button type="button" class="btn btn-danger btn-lg">Volver</button></a>
+      </div>
+      <div class="conten-page-login">
+
+        <div class="container d-flex justify-content-center h-login">
+          <div class="login">
+            <div class="w-100 pt-4 pb-1 mx-auto text-center">
+              <img class="imageLogo" src="/assets/images/intro-nav/logo-sin-fondo.png" alt="logo">
+            </div>
+            <div class="d-flex justify-content-center">
+              <form [formGroup]="loginForm" class="mt-4" action="">
+                <mat-form-field class="form-field">
+                  <div class="input-group mb-3">
+
+                    <input matInput type="text" name="email" class="form-control kanit-light nullShadow"
+                           placeholder="email">
+                    @if(controlHasError('email','requeride')){
+                      <mat-error>Este Campo es Obligatorio</mat-error>
+                    }
+                    @if(controlHasError('email','email')){
+                      <mat-error>Introduzca un correo electronico valido</mat-error>
+                    }
+                  </div>
+                </mat-form-field>
+                  <mat-form-field class="form-field">
+                  <div class="input-group mb-3 ">
+                    <input type="password" name="contrasenia"
+                           class="form-control kanit-light nullShadow" placeholder="Contraseña">
+                    @if(controlHasError('password','requeride')){
+                      <mat-error>Este Campo es Obligatorio</mat-error>
+                    }
+                  </div>
+                  </mat-form-field>
+                  <div class="d-flex flex-wrap justify-content-between py-2">
+                    <button type="button" class="btn btn-outline-warning">Iniciar Sesion</button>
+                    <a href="/sections/register.html" class="nav-link" aria-disabled="true">
+                      <button type="button"
+                              class="btn btn-outline-primary fw-semibold-1">Registrarme</button>
+                    </a>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="box">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>

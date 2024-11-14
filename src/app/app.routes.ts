@@ -1,11 +1,13 @@
 import { RouterModule, Routes } from '@angular/router';
-import { PonenteProfileComponent } from './shared/components/ponente-profile/ponente-profile.component';
-import { PonenteProfileRoutes } from './shared/components/ponente-profile/ponente-profile.routes'
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: PonenteProfileComponent
-    },
-    ...PonenteProfileRoutes,
+
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+
+  {
+    path:'auth',
+    loadChildren: () =>
+      import('./pages/auth/auth.routes').then((a) => a.authRoutes)
+  }
+
 ];
