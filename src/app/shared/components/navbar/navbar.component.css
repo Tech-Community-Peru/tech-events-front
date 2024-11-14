@@ -1,0 +1,72 @@
+/* Estilos personalizados para el navbar */
+.bg-navbar {
+    background-color: #705CDF; /* Color de fondo morado */
+  }
+  
+  .nav-padding {
+    padding: 15px !important;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos en el navbar */
+}
+
+.navbar-title { /* Elimina cualquier margen que pueda desplazar el texto */
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+  .fw-bold {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #F2F2F2; /* Texto en color claro */
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+  }
+  
+  .nav-link {
+    line-height: 2; /* Ajusta según sea necesario */
+    color: #F2F2F2; /* Color claro para enlaces */
+  }
+  
+  .fw-semibold {
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    color: #F2F2F2;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+  }
+  
+  /* Estilos para el botón */
+  .btn-outline-primary {
+    --bs-btn-border-color: #F2F2F2;
+    --bs-btn-hover-border-color: #F2F2F2;
+    --bs-btn-hover-bg: #F2F2F2;
+    --bs-btn-hover-color: #705CDF;
+    color: #F2F2F2;
+  }
+  
+  /* Ajuste de tamaño de fuente en pantallas pequeñas */
+  @media (max-width: 420px) {
+    .fw-bold {
+      font-size: 20px;
+    }
+  }
+  
+  /* Ajuste de scroll para secciones */
+  .section {
+    scroll-margin-top: 80px; /* Ajuste para evitar que el contenido quede oculto tras el navbar fijo */
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos en el navbar */
+}
+
+.navbar-brand,
+.navbar-title {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos dentro */
+    margin: 0; /* Elimina cualquier margen que pueda desplazar el texto */
+    padding: 0; /* Elimina cualquier padding adicional */
+}

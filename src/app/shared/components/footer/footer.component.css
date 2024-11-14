@@ -1,0 +1,74 @@
+/* Estilos generales del footer */
+footer {
+    background-color: #181818;
+    color: #fff;
+    padding: 40px 0;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+/* Sección de redes sociales */
+.social-media h3, .contact-info h3, .useful-links h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #f0f0f0;
+}
+
+.social-media .social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-media .social-icon:hover {
+    color: #1da1f2; /* Cambia de color al pasar el cursor */
+}
+
+/* Sección de contacto */
+.contact-info p {
+    margin: 5px 0;
+}
+
+/* Sección de enlaces */
+.useful-links a {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.useful-links a:hover {
+    color: #f0f0f0;
+}
+
+/* Sección inferior del footer */
+.footer-bottom {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+/* Adaptación para dispositivos móviles */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .social-media, .contact-info, .useful-links {
+        margin-bottom: 20px;
+    }
+}

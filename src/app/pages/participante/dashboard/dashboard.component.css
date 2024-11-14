@@ -1,0 +1,45 @@
+/* Asegúrate de que el body y el html ocupen toda la altura */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Usa Flexbox para asegurar que el contenedor principal ocupe toda la altura */
+.content-section {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(80vh - 100px); /* Ajusta 100px según la altura del navbar y footer */
+    margin-top: 60px; /* Añade margen superior para separar del navbar */
+}
+
+.background {
+    flex: 1; /* Esto hace que el contenido ocupe el espacio restante */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.py-5 {
+    padding-top: 12rem !important;
+}
+
+.btn-purple{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #705CDF;
+    --bs-btn-border-color: #463c83;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #5244a1;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #b1a7e7;
+    --bs-btn-active-border-color: #8477d1;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+}
