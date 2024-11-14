@@ -1,4 +1,4 @@
-export interface AuthResponse{
+export interface RegisterResponse{
   id: number,
   correoElectronico: string,
   idRole: number,

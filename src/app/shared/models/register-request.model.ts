@@ -1,4 +1,4 @@
-export interface AuthRequest{
+export interface RegisterRequest{
   nombre: string,
   apellido: string,
   correoElectronico: string,

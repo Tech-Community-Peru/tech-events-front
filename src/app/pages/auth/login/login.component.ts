@@ -7,11 +7,12 @@ import {Router, RouterLink} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {AuthRequest} from '../../../shared/models/auth-request.model';
 import {AuthService} from '../../../core/service/auth.service';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatCardModule, MatButtonModule, MatSnackBarModule, RouterLink],
+  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatCardModule, MatButtonModule, MatSnackBarModule, RouterLink, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -38,19 +39,23 @@ export class LoginComponent {
   onSubmit(){
     if(this.loginForm.invalid){
       return;
-    };
+    }
 
     const credentials: AuthRequest = this.loginForm.value;
 
     this.authService.login(credentials).subscribe({
       next: () => {
-        this.showSnackBar('Inicio de sesion exitoso');
-        this.router.navigate(['/participante'])
+        this.showSnackBar('Inicio de sesión exitoso');
+        this.router.navigate(['/participante']);
       },
       error: () => {
-        this.showSnackBar('Error en el inicio de sesion');
+        this.showSnackBar('Error en el inicio de sesión. Por favor, intenta de nuevo.');
       },
-    )};
-
+    });
+  }
+  private showSnackBar(message: string): void {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
   }
 }
