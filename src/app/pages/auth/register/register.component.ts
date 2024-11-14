@@ -1,12 +1,75 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { AuthService } from '../../../core/service/auth.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+  ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
 })
 export class RegisterComponent {
+  registerForm: FormGroup;
 
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+
+  constructor() {
+    this.registerForm = this.fb.group({
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      correoElectronico: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      paisOrigen: ['', Validators.required],
+    });
+  }
+
+  controlHasError(controlName: string, errorName: string): boolean {
+    return this.registerForm.controls[controlName].hasError(errorName);
+  }
+
+  onSubmit() {
+    if (this.registerForm.valid) {
+      const userData = this.registerForm.value;
+
+      this.authService.register(userData).subscribe({
+        next: () => {
+          this.showSnackBar('Registro exitoso');
+          this.router.navigate(['/auth/login']);
+        },
+        error: (err) => {
+          this.showSnackBar('Error en el registro');
+          console.error('Error en el registro:', err);
+        },
+      });
+    }
+  }
+
+  private showSnackBar(message: string): void {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
+  }
 }
