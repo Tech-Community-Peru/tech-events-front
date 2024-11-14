@@ -1,4 +1,7 @@
 export interface AuthRequest{
-  email:string;
-  password:string;
+  nombre: string,
+  apellido: string,
+  correoElectronico: string,
+  password: string,
+  paisOrigen: string
 }
