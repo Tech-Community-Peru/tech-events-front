@@ -1,1 +1,55 @@
-<p>register works!</p>
+<body class="body-register d-flex flex-column min-vh-100">
+  <div class="wrapper-register">
+    <main>
+      <div class="kanit-light d-grid gap-2 d-md-flex justify-content-end pe-4 mt-4">
+        <button routerLink="/auth/login" type="button" class="btn btn-danger btn-lg">Volver al Login</button>
+      </div>
+      <div class="conten-page-register">
+        <div class="container d-flex justify-content-center h-register">
+          <div class="register">
+            <div class="w-100 pt-4 pb-1 mx-auto text-center">
+              <img class="imageLogo" src="/assets/images/intro-nav/logo-sin-fondo.png" alt="logo">
+            </div>
+            <div class="d-flex justify-content-center">
+              <form [formGroup]="registerForm" class="mt-4 form-container" (ngSubmit)="onSubmit()">
+
+                <mat-form-field class="form-field w-100">
+                  <input matInput type="text" formControlName="nombre" name="nombre" class="form-control kanit-light nullShadow" placeholder="Nombre">
+                  <mat-error *ngIf="controlHasError('nombre', 'required')">Este campo es obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-field w-100">
+                  <input matInput type="text" formControlName="apellido" name="apellido" class="form-control kanit-light nullShadow" placeholder="Apellido">
+                  <mat-error *ngIf="controlHasError('apellido', 'required')">Este campo es obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-field w-100">
+                  <input matInput type="email" formControlName="correoElectronico" name="correoElectronico" class="form-control kanit-light nullShadow" placeholder="Correo Electrónico">
+                  <mat-error *ngIf="controlHasError('correoElectronico', 'required')">Este campo es obligatorio</mat-error>
+                  <mat-error *ngIf="controlHasError('correoElectronico', 'email')">Introduzca un correo electrónico válido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-field w-100">
+                  <input matInput type="password" formControlName="password" name="password" class="form-control kanit-light nullShadow" placeholder="Contraseña">
+                  <mat-error *ngIf="controlHasError('password', 'required')">Este campo es obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-field w-100">
+                  <input matInput type="text" formControlName="paisOrigen" name="paisOrigen" class="form-control kanit-light nullShadow" placeholder="País de Origen">
+                  <mat-error *ngIf="controlHasError('paisOrigen', 'required')">Este campo es obligatorio</mat-error>
+                </mat-form-field>
+
+                <div class="d-flex justify-content-center py-3">
+                  <button mat-raised-button color="primary" class="submit-button" [disabled]="registerForm.invalid">
+                    Registrarse
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>

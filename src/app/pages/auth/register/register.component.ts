@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
 
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -24,9 +25,10 @@ import { Router, RouterLink } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+  
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   registerForm: FormGroup;
@@ -55,7 +57,7 @@ export class RegisterComponent {
       const userData = this.registerForm.value;
 
       this.authService.register(userData).subscribe({
-        next: () => {
+        next: (response) => {
           this.showSnackBar('Registro exitoso');
           this.router.navigate(['/auth/login']);
         },
