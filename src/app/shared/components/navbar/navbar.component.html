@@ -1,31 +1,23 @@
-<nav class="navbar navbar-expand-lg bg-navbar text-light fixed-top">
-    <div class="container nav-padding">
-      <p class="d-flex fw-bold me-auto">TECH COMMUNITY PERU</p>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav fw-semibold">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="#bienvenida">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="#nosotros">Sobre nosotros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="#caracteristicas">Características</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/auth/login">Testimonios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/auth/login">Iniciar Sesión</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-<!--
-<button routerLink="/auth/login" type="button" class="btn btn-outline-primary fw-semibold">Iniciar Sesión</button>
--->
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg bg-navbar text-light fixed-top">
+  <div class="container nav-padding">
+    <a class="navbar-brand fw-bold me-auto" routerLink="/">
+      <img src="logo-sin-fondo.ico" alt="Logo" width="65" height="65" class="d-inline-block align-text-top text-light">
+    </a>
+    <p class="navbar-title d-flex align-items-center fw-bold me-auto">TECH COMMUNITY PERU</p>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav fw-semibold">
+        <li class="nav-item">
+          <a routerLink="/auth/login" class="nav-link" aria-disabled="true">
+            <button type="button" class="btn btn-outline-primary fw-semibold">Ver mi perfil</button>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

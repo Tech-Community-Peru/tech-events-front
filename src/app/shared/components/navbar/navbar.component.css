@@ -7,6 +7,15 @@
     padding: 15px !important;
   }
   
+  .navbar {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos en el navbar */
+}
+
+.navbar-title { /* Elimina cualquier margen que pueda desplazar el texto */
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
   .fw-bold {
     font-weight: 800;
     letter-spacing: -0.5px;
@@ -45,8 +54,19 @@
   }
   
   /* Ajuste de scroll para secciones */
-  section {
+  .section {
     scroll-margin-top: 80px; /* Ajuste para evitar que el contenido quede oculto tras el navbar fijo */
   }
-  
-  
+
+  .navbar {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos en el navbar */
+}
+
+.navbar-brand,
+.navbar-title {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos dentro */
+    margin: 0; /* Elimina cualquier margen que pueda desplazar el texto */
+    padding: 0; /* Elimina cualquier padding adicional */
+}

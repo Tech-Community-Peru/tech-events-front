@@ -1,0 +1,132 @@
+/* Asegúrate de que el body y el html ocupen toda la altura */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Usa Flexbox para asegurar que el contenedor principal ocupe toda la altura */
+.content-section {
+    flex-direction: column;
+    min-height: calc(80vh - 100px); /* Ajusta 100px según la altura del navbar y footer */
+/*    margin-top: 130px;  */
+}
+
+.background {
+    flex: 1; /* Esto hace que el contenido ocupe el espacio restante */
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.py-5 {
+    padding-top: 12rem !important;
+}
+
+.btn-purple{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #705CDF;
+    --bs-btn-border-color: #463c83;
+    --bs-btn-hover-color: #463c83;
+    --bs-btn-hover-bg: #ffffff;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #b1a7e7;
+    --bs-btn-active-border-color: #8477d1;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+}
+
+.btn-white{
+    --bs-btn-color: #705CDF;
+    --bs-btn-bg: #ffffff;
+    --bs-btn-border-color: #ffffff;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #705CDF;
+    --bs-btn-hover-border-color: #ffffff;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #b1a7e7;
+    --bs-btn-active-border-color: #8477d1;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+}
+
+.sub-1{
+    color: #000000;
+text-align: center;
+font-family: Inter;
+font-size: 35px;
+font-style: normal;
+font-weight: 200;
+line-height: normal;
+}
+
+.sub-2{
+    color: #DADADA;
+text-align: center;
+font-family: Inter;
+font-size: 35px;
+font-style: normal;
+font-weight: 250;
+line-height: normal;
+}
+
+.height-1 {
+    height: 89vh; /* Opción para ocupar toda la altura de la ventana */
+    display: flex; /* Usar flexbox para centrar el contenido */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    text-align: center; /* Centra el texto */
+    padding: 10px; /* Espacio interno opcional */
+}
+
+.bg-purple{
+    background-color: #705CDF;
+}
+
+/* Fondo de imagen */
+.image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Colocar detrás del contenido */
+}
+
+.image-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: opacity(0.7) multiply; /* Aplicar filtro de multiplicación con opacidad */
+    background-color: #705CDF; /* Color de multiplicación */
+}
+
+.tittle-1 {
+    color: #000000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.tittle-2 {
+    color: #ffffff;
+    text-align: center;
+    font-family: Inter;
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
