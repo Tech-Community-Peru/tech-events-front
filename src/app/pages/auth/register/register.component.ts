@@ -31,6 +31,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './register.component.css' // Corrected to `styleUrls`
 })
 export class RegisterComponent {
+
   registerForm: FormGroup;
 
   private fb = inject(FormBuilder);

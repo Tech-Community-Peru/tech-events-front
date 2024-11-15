@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(`${this.baseURL}/register/customer`, registerRequest);
+    return this.http.post<RegisterResponse>(`${this.baseURL}/register/participante`, registerRequest);
   }
 
   logout(): void {

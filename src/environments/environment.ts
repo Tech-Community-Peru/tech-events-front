@@ -1,4 +1,4 @@
 export const environment = {
   product: true,
-  baseURL: 'https://techcommunityperu-api-latest.onrender.com/api/v1'
+  baseURL: 'http://localhost:8080/api/v1'
 };
