@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // Import CommonModule for *ngIf
 import { AuthService } from '../../../core/service/auth.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -13,11 +14,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
 
-
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
+    CommonModule, // Add CommonModule here
     MatButtonModule,
     MatInputModule,
     MatCardModule,
@@ -25,10 +26,9 @@ import { Router, RouterLink } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-  
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css' // Corrected to `styleUrls`
 })
 export class RegisterComponent {
   registerForm: FormGroup;
