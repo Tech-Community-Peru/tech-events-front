@@ -10,13 +10,51 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      @if (!isAuthenticated) {
+        <ul class="navbar-nav fw-semibold">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="#bienvenida">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="#nosotros">Sobre nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="#caracteristicas">Características</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/auth/login">Testimonios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/auth/login">Iniciar Sesión</a>
+          </li>
+        </ul>
+      
+    }@else {
       <ul class="navbar-nav fw-semibold">
-        <li class="nav-item">
-          <a routerLink="/auth/login" class="nav-link" aria-disabled="true">
-            <button type="button" class="btn btn-outline-primary fw-semibold">Ver mi perfil</button>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="profileDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Mi Perfil
           </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <li>
+              <a routerLink="/profile" class="dropdown-item">
+                Ver Perfil
+              </a>
+            </li>
+            <li>
+              <button class="dropdown-item" (click)="logout()">Cerrar Sesión</button>
+            </li>
+          </ul>
         </li>
-      </ul>
+      </ul>      
+    }
     </div>
   </div>
 </nav>
