@@ -1,7 +1,17 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  // Ruta por defecto: si no está autenticado, ir al login
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+
+  // Ruta para la autenticación
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./pages/auth/auth.routes').then((a) => a.authRoutes),
+  },
+
+  // Ruta para el dashboard después de iniciar sesión
   {
     path: 'dashboard',
     loadComponent: () =>
@@ -9,6 +19,8 @@ export const routes: Routes = [
         (m) => m.DashboardComponent
       ),
   },
+
+  // Rutas para eventos
   {
     path: 'events',
     loadComponent: () =>
@@ -23,4 +35,7 @@ export const routes: Routes = [
         (m) => m.EventDetailComponent
       ),
   },
+
+  // Ruta por defecto para cualquier otra URL
+  { path: '**', redirectTo: 'auth/login' },
 ];
