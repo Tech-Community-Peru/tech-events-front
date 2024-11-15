@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import {EventoResponse} from '../../shared/models/evento-response.model';
 export interface Event {
   id: number;
   nombre: string;
@@ -25,10 +26,17 @@ export class EventService {
 
   filterEventsByCategory(tipoEvento: string): Observable<Event[]> {
     const params = new HttpParams().set('tipoEvento', tipoEvento);
-    return this.http.get<Event[]>(`${this.baseURL}/filtrarCategoria`, { params });
+    return this.http.get<Event[]>(`${this.baseURL}/filtrarCategoria`, {params});
   }
 
   getEventDetails(id: number): Observable<Event> {
     return this.http.get<Event>(`${this.baseURL}/${id}`);
+  }
+  getEventosInscritos(usuarioId: number): Observable<EventoResponse[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('authToken')}` // Asegúrate de tener un token JWT almacenado
+    });
+
+    return this.http.get<EventoResponse[]>(`${this.baseURL}/${usuarioId}/evento`, { headers });
   }
 }

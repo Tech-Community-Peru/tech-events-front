@@ -29,12 +29,12 @@ export class EventListComponent implements OnInit {
       }
     });
   }
-  
+
   logout(): void {
     this.authService.logout(); // Cambia la señal de autenticación
   }
 
-  
+
   ngOnInit(): void {
     this.eventService.getAllEvents().subscribe({
       next: (data) => this.events = data,
@@ -45,5 +45,5 @@ export class EventListComponent implements OnInit {
   viewEventDetails(id: number): void {
     this.router.navigate(['/events', id]);
   }
-  
+
 }

@@ -10,7 +10,7 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./pages/auth/auth.routes').then((a) => a.authRoutes),
-      
+
   },
 
   // Ruta para el dashboard después de iniciar sesión
@@ -36,6 +36,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/event-detail/event-detail.component').then(
         (m) => m.EventDetailComponent
+      ),
+  },
+  {
+    path: 'inscriptions',
+    loadComponent: () =>
+      import('./pages/inscription/inscription.component').then(
+        (m) => m.InscriptionComponent
       ),
   },
 

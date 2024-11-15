@@ -1,0 +1,129 @@
+.container {
+  max-width: 960px;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* General Styles */
+body.body-event-list, html.eventListHtml {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.wrapper-event-list {
+  position: relative; /* Cambiado de absolute a relative */
+  min-height: 100vh; /* Altura mínima para llenar la pantalla */
+  overflow-x: hidden; /* Deshabilitar el scroll horizontal */
+  background-image: radial-gradient(#1e90ff 0%, #0e5bad 100%);
+}
+
+/* Container Styling */
+.container {
+  padding: 20px;
+}
+
+h2.text-center {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 2rem;
+}
+
+.row {
+  margin: 0 -15px;
+}
+
+/* Card Styling */
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #343a40;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #495057;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 20px;
+  padding: 8px 16px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Animations for Floating Elements */
+.box div {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 6px solid rgba(255, 255, 255, 0.6);
+}
+
+.box div:nth-child(1) {
+  top: 12%;
+  left: 42%;
+  animation: animate 10s linear infinite;
+}
+
+.box div:nth-child(2) {
+  top: 70%;
+  left: 50%;
+  animation: animate 7s linear infinite;
+}
+
+/* Additional Floating Elements for Event List */
+.box div:nth-child(3) {
+  top: 30%;
+  left: 15%;
+  animation: animate 8s linear infinite;
+}
+
+.box div:nth-child(4) {
+  top: 50%;
+  left: 80%;
+  animation: animate 6s linear infinite;
+}
+
+.box div:nth-child(5) {
+  top: 10%;
+  left: 25%;
+  animation: animate 12s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(0) translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) translateY(-90px) rotate(360deg);
+    opacity: 0;
+  }
+}
