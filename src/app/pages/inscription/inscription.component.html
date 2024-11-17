@@ -10,8 +10,14 @@
 
   <div class="container my-4">
     <h2 class="text-center mb-4">Lista de Eventos</h2>
+
+    <!-- Estado de carga -->
+    <div *ngIf="eventos.length === 0" class="text-center">
+      <p>Cargando eventos... o No hay eventos disponibles.</p>
+    </div>
+
     <div class="row">
-      <div *ngFor="let event of eventos" class="col-md-4 mb-3">
+      <div *ngFor="let event of eventos" class="col-sm-6 col-md-4 mb-3">
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">{{ event.nombre }}</h5>
@@ -28,5 +34,6 @@
     </div>
   </div>
 </div>
+
 <app-footer></app-footer>
 

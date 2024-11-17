@@ -34,7 +34,25 @@ export class AuthService {
 
   // Método para el registro
   register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(`${this.baseURL}/register/participante`, registerRequest);
+    return this.http.post<RegisterResponse>(`${this.baseURL}/register/participante`, registerRequest).pipe(
+      tap((response) => {
+        // Guardamos los datos del registro en localStorage
+        const registerData = {
+          id: response.id,
+          correoElectronico: response.correoElectronico,
+          idRole: response.idRole,
+          nombreRole: response.nombreRole,
+          rolRole: response.rolRole,
+          nombre: response.nombre,
+          apellido: response.apellido,
+          paisOrigen: response.paisOrigen
+        };
+
+        // Almacenamos en localStorage
+        this.storageService.setRegisterData(registerData);
+        this.isAuthenticatedSignal.set(true);
+      })
+    );
   }
 
   // Método para el logout
