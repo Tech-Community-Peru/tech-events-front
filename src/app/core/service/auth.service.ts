@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import {catchError, Observable, tap} from 'rxjs';
 
 import { StorageService } from './storage.service';
 import { AuthRequest } from '../../shared/models/auth-request.model';
@@ -36,24 +36,17 @@ export class AuthService {
   register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${this.baseURL}/register/participante`, registerRequest).pipe(
       tap((response) => {
-        // Guardamos los datos del registro en localStorage
-        const registerData = {
-          id: response.id,
-          correoElectronico: response.correoElectronico,
-          idRole: response.idRole,
-          nombreRole: response.nombreRole,
-          rolRole: response.rolRole,
-          nombre: response.nombre,
-          apellido: response.apellido,
-          paisOrigen: response.paisOrigen
-        };
-
         // Almacenamos en localStorage
-        this.storageService.setRegisterData(registerData);
+        this.storageService.setRegisterData(response);
         this.isAuthenticatedSignal.set(true);
+      }),
+      catchError((error) => {
+        console.error('Error al registrar participante:', error);
+        throw error;
       })
     );
   }
+
 
   // Método para el logout
   logout(): void {

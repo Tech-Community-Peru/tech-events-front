@@ -38,8 +38,8 @@ export class EventService {
     return this.http.get<Event>(`${this.baseURL}/${id}`);
   }
 
-  getEventosInscritos(usuarioId: number): Observable<EventoResponse[]> {
-    const registerData = localStorage.getItem('tech_auth'); // Obtén el valor como string
+  getEventosInscritos(idParticipante: number): Observable<EventoResponse[]> {
+    const registerData = localStorage.getItem('tech_register'); // Obtén el valor como string
     const token = registerData ? JSON.parse(registerData).token : null; // Parsea el JSON y extrae el token
 
     if (!token) {
@@ -50,7 +50,7 @@ export class EventService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<EventoResponse[]>(`${this.Url2}/usuario/${usuarioId}/evento`, { headers });
+    return this.http.get<EventoResponse[]>(`${this.Url2}/participante/${idParticipante}/evento`, { headers });
   }
 
 }

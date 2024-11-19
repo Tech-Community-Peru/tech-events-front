@@ -25,13 +25,18 @@ export class StorageService {
     return data? JSON.parse(data) as RegisterResponse: null;
   }
 
-  setRegisterData (data: RegisterResponse): void {
+  setRegisterData(data: RegisterResponse): void {
     localStorage.setItem(this.registerKey, JSON.stringify(data));
   }
 
   getUsuarioId(): number | null {
     const registerData = this.getRegisterData();
     return registerData ? registerData.id: null;
+  }
+
+  getParticipanteId(): number | null {
+    const registerData = this.getRegisterData();
+    return registerData ? registerData.idParticipante: null;
   }
 
 }
