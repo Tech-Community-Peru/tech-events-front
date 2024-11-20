@@ -26,17 +26,16 @@ export class StorageService {
   }
 
   setRegisterData(data: RegisterResponse): void {
-    localStorage.setItem(this.registerKey, JSON.stringify(data));
+      localStorage.setItem(this.registerKey, JSON.stringify(data));
+      console.log('Datos registrados en localStorage:', data);
   }
-
-  getUsuarioId(): number | null {
-    const registerData = this.getRegisterData();
-    return registerData ? registerData.id: null;
-  }
-
-  getParticipanteId(): number | null {
-    const registerData = this.getRegisterData();
-    return registerData ? registerData.idParticipante: null;
+  
+  getParticipanteId(): number {
+    const authData = this.getAuthData();
+    if (!authData) {
+      throw new Error('No authentication data found');
+    }
+    return authData.idParticipante;
   }
 
 }

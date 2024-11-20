@@ -25,18 +25,17 @@ export class AuthService {
   // Método para el login
   login(authRequest: AuthRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseURL}/login`, authRequest).pipe(
-      tap((response) => {
-        this.storageService.setAuthData(response);
-        this.isAuthenticatedSignal.set(true); // Cambia la señal de autenticación a true
-      })
+        tap(response => this.storageService.setAuthData(response))
+        
     );
-  }
+    
+}
 
   // Método para el registro
   register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${this.baseURL}/register/participante`, registerRequest).pipe(
       tap((response) => {
-        // Almacenamos en localStorage
+        // Almacenamos en localStorage solo el idParticipante
         this.storageService.setRegisterData(response);
         this.isAuthenticatedSignal.set(true);
       }),
@@ -75,4 +74,6 @@ export class AuthService {
     const authData = this.storageService.getAuthData();
     return authData ? authData : null;
   }
+
+  
 }

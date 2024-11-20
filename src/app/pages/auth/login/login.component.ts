@@ -53,7 +53,8 @@ export class LoginComponent {
     const credentials: AuthRequest = this.loginForm.value;
 
     this.authService.login(credentials).subscribe({
-      next: () => {
+      next: (authData) => {
+        console.log('Datos de logeo:', authData);
         this.showSnackBar('Inicio de sesión exitoso');
         // Redirigir al dashboard
         this.router.navigate(['/dashboard']);

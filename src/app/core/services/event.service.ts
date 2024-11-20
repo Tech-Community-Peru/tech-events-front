@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {EventoResponse} from '../../shared/models/evento-response.model';
+import { StorageService } from '../service/storage.service';
 
 export interface Event {
   id: number;
@@ -21,7 +22,7 @@ export class EventService {
   private http = inject(HttpClient); // Inyecta HttpClient directamente
   private baseURL = `${environment.baseURL}/evento`;
   private Url2 = `${environment.baseURL}/inscripcion`
-
+ storageService = inject(StorageService);
   //constructor(private http: HttpClient) {}
 
 
@@ -39,8 +40,8 @@ export class EventService {
   }
 
   getEventosInscritos(idParticipante: number): Observable<EventoResponse[]> {
-    const registerData = localStorage.getItem('tech_register'); // Obtén el valor como string
-    const token = registerData ? JSON.parse(registerData).token : null; // Parsea el JSON y extrae el token
+    const loginData = localStorage.getItem('tech_auth'); // Obtén el valor como string
+    const token = loginData ? JSON.parse(loginData).token : null; // Parsea el JSON y extrae el token
 
     if (!token) {
       throw new Error('Token no encontrado en localStorage.');

@@ -26,17 +26,17 @@ export class InscriptionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // @ts-ignore
-    this.idParticipante = this.storageService.getRegisterData()?.idParticipante;
-    console.log(this.storageService.getRegisterData());
-    console.log('Participante ID:', this.idParticipante); // Log para verificar el valor
-    if (this.idParticipante) {
-      this.loadEventos(); // Si existe usuarioId, cargamos los eventos
+    const authData = this.storageService.getAuthData();
+    console.log('Datos de logeo:', authData); // Log para verificar los datos
+    if (authData && authData.idParticipante) {
+      this.idParticipante = authData.idParticipante;
+      console.log('Participante ID:', this.idParticipante);
+      this.loadEventos();
     } else {
-      console.error('Usuario no autenticado.');
-      // Opcional: Redirigir al login o mostrar un mensaje de error
+      console.error('Usuario no autenticado o idParticipante ausente.');
     }
   }
+  
 
 
   // Cargar eventos inscritos al usuario
