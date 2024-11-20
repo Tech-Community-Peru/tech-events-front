@@ -7,6 +7,8 @@ import { AuthRequest } from '../../shared/models/auth-request.model';
 import { AuthResponse } from '../../shared/models/auth-response.model';
 import { RegisterRequest } from '../../shared/models/register-request.model';
 import { RegisterResponse } from '../../shared/models/register-response.model';
+import { RegisterRequestPonente } from '../../shared/models/register-requestPonente.model';
+import { RegisterResponsePonente } from '../../shared/models/register-responsePonente.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -46,6 +48,28 @@ export class AuthService {
     );
   }
 
+  // Registro de ponente
+  registerPonente(registerRequest: RegisterRequestPonente): Observable<RegisterResponsePonente> {
+    return this.http.post<RegisterResponsePonente>(`${this.baseURL}/register/ponente`, registerRequest).pipe(
+      tap((response) => {
+        const registerData = {
+          id: response.id,
+          correoElectronico: response.correoElectronico,
+          idRole: response.idRole,
+          nombreRole: response.nombreRole,
+          rolRole: response.rolRole,
+          nombre: response.nombre,
+          apellido: response.apellido,
+          cargo: response.cargo,
+          especialidad: response.especialidad,
+          paisOrigen: response.paisOrigen,
+        };
+
+        this.storageService.setRegisterData(registerData);
+        this.isAuthenticatedSignal.set(true);
+      })
+    );
+  }
 
   // Método para el logout
   logout(): void {
