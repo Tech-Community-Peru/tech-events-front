@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
 })
 export class InscriptionComponent implements OnInit {
   eventos: EventoResponse[] = [];
-  usuarioId: number | null = null; // Inicializamos como null hasta obtenerlo dinámicamente
+  idParticipante: number | null = null; // Inicializamos como null hasta obtenerlo dinámicamente
 
   constructor(
     private eventoService: EventService,
@@ -26,25 +26,27 @@ export class InscriptionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.usuarioId = this.storageService.getUsuarioId();
-    console.log('Usuario ID:', this.usuarioId); // Log para verificar el valor
-    if (this.usuarioId) {
-      this.loadEventos(); // Si existe usuarioId, cargamos los eventos
+    const authData = this.storageService.getAuthData();
+    console.log('Datos de logeo:', authData); // Log para verificar los datos
+    if (authData && authData.idParticipante) {
+      this.idParticipante = authData.idParticipante;
+      console.log('Participante ID:', this.idParticipante);
+      this.loadEventos();
     } else {
-      console.error('Usuario no autenticado.');
-      // Opcional: Redirigir al login o mostrar un mensaje de error
+      console.error('Usuario no autenticado o idParticipante ausente.');
     }
   }
+  
 
 
   // Cargar eventos inscritos al usuario
   loadEventos(): void {
-    if (!this.usuarioId) {
+    if (!this.idParticipante) {
       console.error('No se puede cargar eventos sin un usuario autenticado.');
       return;
     }
 
-    this.eventoService.getEventosInscritos(this.usuarioId).subscribe(
+    this.eventoService.getEventosInscritos(this.idParticipante).subscribe(
       (data) => {
         this.eventos = data;
       },

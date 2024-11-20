@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import {catchError, Observable, tap} from 'rxjs';
 
 import { StorageService } from './storage.service';
 import { AuthRequest } from '../../shared/models/auth-request.model';
@@ -27,32 +27,23 @@ export class AuthService {
   // Método para el login
   login(authRequest: AuthRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseURL}/login`, authRequest).pipe(
-      tap((response) => {
-        this.storageService.setAuthData(response);
-        this.isAuthenticatedSignal.set(true); // Cambia la señal de autenticación a true
-      })
+        tap(response => this.storageService.setAuthData(response))
+        
     );
-  }
+    
+}
 
   // Método para el registro
   register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${this.baseURL}/register/participante`, registerRequest).pipe(
       tap((response) => {
-        // Guardamos los datos del registro en localStorage
-        const registerData = {
-          id: response.id,
-          correoElectronico: response.correoElectronico,
-          idRole: response.idRole,
-          nombreRole: response.nombreRole,
-          rolRole: response.rolRole,
-          nombre: response.nombre,
-          apellido: response.apellido,
-          paisOrigen: response.paisOrigen
-        };
-
-        // Almacenamos en localStorage
-        this.storageService.setRegisterData(registerData);
+        // Almacenamos en localStorage solo el idParticipante
+        this.storageService.setRegisterData(response);
         this.isAuthenticatedSignal.set(true);
+      }),
+      catchError((error) => {
+        console.error('Error al registrar participante:', error);
+        throw error;
       })
     );
   }
@@ -107,4 +98,6 @@ export class AuthService {
     const authData = this.storageService.getAuthData();
     return authData ? authData : null;
   }
+
+  
 }

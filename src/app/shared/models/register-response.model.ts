@@ -1,10 +1,10 @@
-export interface RegisterResponse{
-  id: number,
-  correoElectronico: string,
-  idRole: number,
-  nombreRole: string,
-  rolRole: string,
-  nombre: string,
-  apellido: string,
-  paisOrigen: string
+export interface RegisterResponse {
+  id: number;
+  correoElectronico: string;
+  idParticipante: number;
+  nombre: string;
+  apellido: string;
+  cargo: string | null;
+  especialidad: string | null;
+  paisOrigen: string;
 }
