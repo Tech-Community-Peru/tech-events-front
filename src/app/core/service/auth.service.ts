@@ -55,9 +55,7 @@ export class AuthService {
         const registerData = {
           id: response.id,
           correoElectronico: response.correoElectronico,
-          idRole: response.idRole,
-          nombreRole: response.nombreRole,
-          rolRole: response.rolRole,
+          idParticipante: response.idPonente, // Convert idPonente to idParticipante
           nombre: response.nombre,
           apellido: response.apellido,
           cargo: response.cargo,
