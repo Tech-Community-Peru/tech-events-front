@@ -4,61 +4,57 @@
 <div class="wrapper-login">
   <main>
     <div class="kanit-light d-grid gap-2 d-md-flex justify-content-end pe-4 mt-4">
-      <a href="/index.html"><button type="button" class="btn btn-danger btn-lg">Volver</button></a>
+      <button type="button" [routerLink]="'/userprofile'" class="btn btn-danger btn-lg">Volver</button>
     </div>
     <div class="conten-page-login">
       <div class="container d-flex justify-content-center h-login">
         <div class="update-profile">
-          <div class="container d-flex justify-content-center">
-            <div class="Form">
-              <div class="input-group mb-3">
-                <input type="text" name="Edad"
-                       class="form-control kanit-light nullShadow form-control-static" placeholder="Edad">
-                <input type="text" name="Nombre"
-                       class="form-control kanit-light nullShadow form-control-static" placeholder="Nombre">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" name="Edad"
-                       class="form-control kanit-light nullShadow form-control-static" placeholder="Apellidos">
-                <input type="text" name="Nombre"
-                       class="form-control kanit-light nullShadow form-control-static" placeholder="LinkedIn">
-              </div>
-              <div class="input-group mb-3">
-                <textarea class="form-control kanit-light nullShadow form-control-static" style="height: 40px" disabled>Habilidades</textarea>
-              </div>
-              <div class="input-group mb-3">
-                <textarea class="form-control kanit-light nullShadow form-control-static" style="height: 40px" disabled>Descripción</textarea>
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" name="Edad"
-                       class="form-control kanit-light nullShadow form-control-static" placeholder="Ubicacion">
-                <input type="text" name="Nombre"
-                       class="form-control kanit-light nullShadow form-control-static" placeholder="PaisOrigen">
-              </div>
-              <div class="d-flex flex-wrap justify-content-center py-2">
-                <button type="button" class="btn btn-outline-warning">Realizar cambios</button>
+          <h2>ACTUALIZAR DATOS</h2>
+          <form [formGroup]="updateProfileForm" (ngSubmit)="onSubmit()">
+            <div class="input-group mb-3">
+              <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre">
+              <div *ngIf="updateProfileForm.get('nombre')?.invalid && updateProfileForm.get('nombre')?.touched" class="text-danger">
+                Nombre es requerido.
               </div>
             </div>
-          </div>
+            <div class="input-group mb-3">
+              <input type="text" formControlName="apellido" class="form-control" placeholder="Apellidos">
+              <div *ngIf="updateProfileForm.get('apellido')?.invalid && updateProfileForm.get('apellido')?.touched" class="text-danger">
+                Apellidos son requeridos.
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="number" formControlName="edad" class="form-control" placeholder="Edad">
+              <div *ngIf="updateProfileForm.get('edad')?.invalid && updateProfileForm.get('edad')?.touched" class="text-danger">
+                Ingresa una edad válida.
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" formControlName="habilidades" class="form-control" placeholder="Habilidades">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" formControlName="linkedin" class="form-control" placeholder="LinkedIn">
+              <div *ngIf="updateProfileForm.get('linkedin')?.invalid && updateProfileForm.get('linkedin')?.touched" class="text-danger">
+                Ingresa un enlace válido.
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" formControlName="informacionAdicional" class="form-control" placeholder="Información Adicional">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" formControlName="ubicacion" class="form-control" placeholder="Ubicación">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" formControlName="paisOrigen" class="form-control" placeholder="País de Origen">
+            </div>
+            <div class="d-flex flex-wrap justify-content-center py-2">
+              <button type="submit" class="btn btn-outline-warning" [disabled]="updateProfileForm.invalid">Realizar cambios</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </main>
-</div>
-
-<div class="box">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
 </div>
 </body>
 

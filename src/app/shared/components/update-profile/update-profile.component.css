@@ -5,7 +5,9 @@ html.loginHtml {
   height: 100%;
 }
 
-
+h2{
+  color: #ffffff;
+}
 
 .h-login {
   height: 700px;

@@ -7,4 +7,12 @@ export interface RegisterResponse {
   cargo: string | null;
   especialidad: string | null;
   paisOrigen: string;
+
+
+
+  habilidades: string;
+  linkedin: string;
+  informacionAdicional: string;
+  ubicacion: string;
+  edad: number;
 }

@@ -8,6 +8,5 @@ export interface ActualizarPerfilRequest {
   ubicacion: string;
   paisOrigen: string;
   edad: number;
-
 }
 

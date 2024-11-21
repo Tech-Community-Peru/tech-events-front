@@ -61,9 +61,10 @@ export class AuthService {
           cargo: response.cargo,
           especialidad: response.especialidad,
           paisOrigen: response.paisOrigen,
+
         };
 
-        this.storageService.setRegisterData(registerData);
+        this.storageService.setRegisterPonenteData(registerData);
         this.isAuthenticatedSignal.set(true);
       })
     );
@@ -98,6 +99,11 @@ export class AuthService {
   }
   getUsuario(): RegisterResponse | null {
     const registerData = this.storageService.getRegisterData();
+    return registerData ? registerData : null;
+  }
+
+  getCorreo(): string | null {
+    const registerData = this.storageService.getRegisterData()?.correoElectronico;
     return registerData ? registerData : null;
   }
 
