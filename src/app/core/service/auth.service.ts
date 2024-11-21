@@ -28,9 +28,9 @@ export class AuthService {
   login(authRequest: AuthRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseURL}/login`, authRequest).pipe(
         tap(response => this.storageService.setAuthData(response))
-        
+
     );
-    
+
 }
 
   // Método para el registro
@@ -61,9 +61,10 @@ export class AuthService {
           cargo: response.cargo,
           especialidad: response.especialidad,
           paisOrigen: response.paisOrigen,
+
         };
 
-        this.storageService.setRegisterData(registerData);
+        this.storageService.setRegisterPonenteData(registerData);
         this.isAuthenticatedSignal.set(true);
       })
     );
@@ -96,6 +97,14 @@ export class AuthService {
     const authData = this.storageService.getAuthData();
     return authData ? authData : null;
   }
+  getUsuario(): RegisterResponse | null {
+    const registerData = this.storageService.getRegisterData();
+    return registerData ? registerData : null;
+  }
 
-  
+  getCorreo(): string | null {
+    const registerData = this.storageService.getRegisterData()?.correoElectronico;
+    return registerData ? registerData : null;
+  }
+
 }

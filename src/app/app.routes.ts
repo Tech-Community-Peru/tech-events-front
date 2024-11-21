@@ -45,6 +45,23 @@ export const routes: Routes = [
         (m) => m.InscriptionComponent
       ),
   },
+  {
+    path: 'userprofile/modificarPerfil',
+    loadComponent: () =>
+      import('./shared/components/update-profile/update-profile.component').then(
+        (m) => m.UpdateProfileComponent
+      ),
+  },
+
+  {
+    path: 'userprofile',
+    loadComponent: () =>
+      import('./shared/components/user-profile/user-profile.component').then(
+        (m) => m.UserProfileComponent
+      ),
+  },
+
+
 
   // Ruta por defecto para cualquier otra URL
   { path: '**', redirectTo: 'auth/login' },
