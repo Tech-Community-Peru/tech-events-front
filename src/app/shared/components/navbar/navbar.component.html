@@ -28,7 +28,7 @@
             <a class="nav-link" routerLink="/auth/login">Iniciar Sesión</a>
           </li>
         </ul>
-      
+
     }@else {
       <ul class="navbar-nav fw-semibold">
         <li class="nav-item dropdown">
@@ -44,7 +44,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
             <li>
-              <a routerLink="/profile" class="dropdown-item">
+              <a [routerLink]="'/userprofile'" class="dropdown-item">
                 Ver Perfil
               </a>
             </li>
@@ -53,7 +53,7 @@
             </li>
           </ul>
         </li>
-      </ul>      
+      </ul>
     }
     </div>
   </div>

@@ -28,9 +28,9 @@ export class AuthService {
   login(authRequest: AuthRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseURL}/login`, authRequest).pipe(
         tap(response => this.storageService.setAuthData(response))
-        
+
     );
-    
+
 }
 
   // Método para el registro
@@ -96,6 +96,9 @@ export class AuthService {
     const authData = this.storageService.getAuthData();
     return authData ? authData : null;
   }
+  getUsuario(): RegisterResponse | null {
+    const registerData = this.storageService.getRegisterData();
+    return registerData ? registerData : null;
+  }
 
-  
 }

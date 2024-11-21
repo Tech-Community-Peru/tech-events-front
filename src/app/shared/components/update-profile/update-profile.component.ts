@@ -4,11 +4,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {Router, RouterLink} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-update-profile',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatCardModule, MatSnackBarModule, RouterLink],
+  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatCardModule, MatSnackBarModule, RouterLink, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './update-profile.component.html',
   styleUrl: './update-profile.component.css'
