@@ -9,11 +9,19 @@
   </div>
 
   <div class="container my-4">
+    <div class="mb-3 text-start">
+      <button class="btn btn-danger" [routerLink]="'/dashboard'">
+        <i class="bi bi-arrow-left"></i> Atras
+      </button>
+    </div>
+
     <h2 class="text-center mb-4">Lista de eventos inscritos</h2>
+
+
 
     <!-- Estado de carga -->
     <div *ngIf="eventos.length === 0" class="text-center">
-      <p>Cargando eventos... o No hay eventos disponibles.</p>
+      <p>Cargando eventos... o No hay eventos a los que estes inscrito.</p>
     </div>
 
     <div class="row">

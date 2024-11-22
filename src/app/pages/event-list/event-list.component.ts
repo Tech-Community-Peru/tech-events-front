@@ -1,14 +1,17 @@
 import { Component, OnInit, inject, effect } from '@angular/core';
 import { EventService, Event } from '../../core/services/event.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { AuthService } from '../../core/service/auth.service';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {EventoResponse} from '../../shared/models/evento-response.model';
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule,NavbarComponent],
+  imports: [CommonModule, NavbarComponent, FormsModule, ReactiveFormsModule, MatInputModule, RouterLink,],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })
@@ -17,6 +20,10 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
 
 export class EventListComponent implements OnInit {
   events: Event[] = [];
+  eventos: EventoResponse[] = [];
+  filteredEvents: EventoResponse[] = []; // Almacena los eventos filtrados
+  selectedCategory: string = '';
+
   private eventService = inject(EventService);
   private router = inject(Router);
   private authService = inject(AuthService);
@@ -34,12 +41,42 @@ export class EventListComponent implements OnInit {
     this.authService.logout(); // Cambia la señal de autenticación
   }
 
+  filterEvents(): void {
+    if(this.selectedCategory === '') {
+      this.ngOnInit()
+    }else{
+      if (this.selectedCategory) {
+        this.eventService.filterEventsByCategory(this.selectedCategory).subscribe({
+          next: (data) => this.filteredEvents = data,
+          error: (error) => {
+            console.error('Error al filtrar los eventos', error);
+            this.filteredEvents = []; // Maneja el error mostrando una lista vacía
+          }
+        });
+      } else {
+        // Si no se selecciona categoría, muestra todos los eventos
+        this.filteredEvents = this.eventos;
+      }
+    }
+  }
+
 
   ngOnInit(): void {
     this.eventService.getAllEvents().subscribe({
-      next: (data) => this.events = data,
+      next: (data) => {
+        this.events = data;
+
+      },
       error: (error) => console.error('Error al cargar los eventos', error)
     });
+    this.eventService.getTodosEvents().subscribe({
+      next: (data) => {
+        this.filteredEvents = data; // Inicialmente muestra todos los eventos
+
+      },
+      error: (error) => console.error('Error al cargar los eventos', error)
+    });
+
   }
 
   viewEventDetails(id: number): void {
