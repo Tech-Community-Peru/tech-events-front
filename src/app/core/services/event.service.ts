@@ -30,10 +30,27 @@ export class EventService {
     return this.http.get<Event[]>(this.baseURL);
   }
 
-  filterEventsByCategory(tipoEvento: string): Observable<Event[]> {
-    const params = new HttpParams().set('tipoEvento', tipoEvento);
-    return this.http.get<Event[]>(`${this.baseURL}/filtrarCategoria`, {params});
+  getTodosEvents(): Observable<EventoResponse[]> {
+    return this.http.get<EventoResponse[]>(this.baseURL);
   }
+
+  filterEventsByCategory(tipoEvento: string): Observable<EventoResponse[]> {
+    const params = new HttpParams().set('tipoEvento', tipoEvento);
+    const loginData = localStorage.getItem('tech_auth'); // Obtén el valor como string
+    const token = loginData ? JSON.parse(loginData).token : null; // Parsea el JSON y extrae el token
+
+    if (!token) {
+      throw new Error('Token no encontrado en localStorage.');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    // Incluye `headers` y `params` en las opciones de la solicitud
+    return this.http.get<EventoResponse[]>(`${this.baseURL}/filtrarCategoria`, { headers, params });
+  }
+
 
   getEventDetails(id: number): Observable<Event> {
     return this.http.get<Event>(`${this.baseURL}/${id}`);

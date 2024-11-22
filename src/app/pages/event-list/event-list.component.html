@@ -1,17 +1,32 @@
-<app-navbar></app-navbar>
 <div class="wrapper-event-list">
-  <div class="box">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-
   <div class="container my-4">
     <h2 class="text-center mb-4">Lista de Eventos</h2>
+
+    <div class="mb-3 text-start">
+      <button class="btn btn-danger" [routerLink]="'/dashboard'">
+        <i class="bi bi-arrow-left"></i> Atras
+      </button>
+    </div>
+
+    <!-- Selector de Categoría -->
+    <div class="mb-3">
+      <label for="categorySelect" class="form-label">Filtrar por Categoría</label>
+      <select id="categorySelect" [(ngModel)]="selectedCategory" class="form-select" (change)="filterEvents()">
+        <option value="">Todas las Categorías</option>
+        <option value="CIBERSEGURIDAD">Ciberseguridad</option>
+        <option value="BIG_DATA">Big Data</option>
+        <option value="BLOCKCHAIN">Blockchain</option>
+        <option value="INTELIGENCIA_ARTIFICIAL">Inteligencia Artificial</option>
+        <option value="CLOUD">Cloud</option>
+        <option value="DEVOPS">DevOps</option>
+        <option value="INNOVACION">Innovación</option>
+        <option value="MACHINE_LEARNING">Machine Learning</option>
+      </select>
+    </div>
+
+    <!-- Lista de Eventos -->
     <div class="row">
-      <div *ngFor="let event of events" class="col-md-4 mb-3">
+      <div *ngFor="let event of filteredEvents" class="col-md-4 mb-3">
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">{{ event.nombre }}</h5>
@@ -25,6 +40,11 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Mensaje si no hay eventos filtrados -->
+    <div *ngIf="filteredEvents.length === 0" class="text-center">
+      <p class="text-muted">No se encontraron eventos para esta categoría.</p>
     </div>
   </div>
 </div>

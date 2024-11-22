@@ -1,16 +1,16 @@
 .container {
     max-width: 960px;
   }
-  
+
   .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
   }
-  
+
   .card:hover {
     transform: translateY(-5px);
   }
-  
+
   /* General Styles */
 body.body-event-list, html.eventListHtml {
   margin: 0;
@@ -23,6 +23,12 @@ body.body-event-list, html.eventListHtml {
   min-height: 100vh; /* Altura mínima para llenar la pantalla */
   overflow-x: hidden; /* Deshabilitar el scroll horizontal */
   background-image: radial-gradient(#1e90ff 0%, #0e5bad 100%);
+}
+
+.form-label{
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Container Styling */
