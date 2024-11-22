@@ -1,1 +1,38 @@
-<p>event-detail works!</p>
+<div class="wrapper-event-list">
+  <div class="container my-5">
+    <!-- Botón para regresar -->
+    <div class="mb-4">
+      <button class="btn btn-danger" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i> Regresar a la Lista de Eventos
+      </button>
+    </div>
+
+    <!-- Detalles del Evento -->
+    <div *ngIf="selectedEvent" class="card">
+      <div class="card-header bg-primary text-white">
+        <h2 class="card-title">{{ selectedEvent.nombre }}</h2>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><strong>Descripción:</strong> {{ selectedEvent.descripcion }}</p>
+        <p class="card-text"><strong>Categoría:</strong> {{ selectedEvent.eventoCategoria }}</p>
+        <p class="card-text"><strong>Tipo:</strong> {{ selectedEvent.tipoEvento }}</p>
+        <p class="card-text"><strong>Costo:</strong> {{ selectedEvent.costo | currency }}</p>
+      </div>
+      <div class="card-footer text-end">
+        <!-- Botón para inscripción -->
+        <button class="btn btn-success" (click)="navigateToInscribirse(selectedEvent.id)">
+          <i class="bi bi-pencil-square"></i> Inscribirse en este Evento
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Elementos flotantes decorativos -->
+  <div class="box">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

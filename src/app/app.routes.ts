@@ -39,6 +39,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'events/:id/inscribirse',
+    loadComponent: () =>
+      import('./pages/inscripcion-compra-evento/inscripcion-compra-evento.component').then(
+        (m) => m.InscripcionCompraEventoComponent
+      ),
+  },
+
+  {
     path: 'inscriptions',
     loadComponent: () =>
       import('./pages/inscription/inscription.component').then(

@@ -80,7 +80,17 @@ export class EventListComponent implements OnInit {
   }
 
   viewEventDetails(id: number): void {
-    this.router.navigate(['/events', id]);
+    const selectedEvent = this.filteredEvents.find(event => event.id === id);
+    if (selectedEvent) {
+      // Guarda los detalles del evento en el almacenamiento local
+      sessionStorage.setItem('selectedEvent', JSON.stringify(selectedEvent));
+
+      // Redirige a la página de detalles
+      this.router.navigate([`/events/:${id}`]);
+    } else {
+      console.error('Evento no encontrado');
+    }
   }
+
 
 }
