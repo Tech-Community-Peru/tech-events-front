@@ -37,6 +37,11 @@ export class EventDetailComponent implements OnInit {
       // Guarda los detalles del evento en el almacenamiento local
       sessionStorage.setItem('selectedEvent', JSON.stringify(this.selectedEvent));
 
+      const loginData = localStorage.getItem('tech_auth');
+      const token = loginData ? JSON.parse(loginData).token : null;
+
+
+
       // Redirige a la página de detalles
       this.router.navigate([`/events/:${id}/inscribirse`]);
     } else {

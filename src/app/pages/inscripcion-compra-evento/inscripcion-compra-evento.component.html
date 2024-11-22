@@ -1,1 +1,28 @@
-<p>inscripcion-compra-evento works!</p>
+<div class="container">
+  <h1>Inscribirse en un Evento</h1>
+  <form [formGroup]="inscripcionForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>ID del Evento:</label>
+    </div>
+
+    <div class="form-group">
+      <label for="tipoPago">Tipo de Pago:</label>
+      <select
+        id="tipoPago"
+        formControlName="tipoPago"
+        class="form-control"
+        required>
+        <option value="DEBIT_CARD">DEBIT CARD</option>
+        <option value="CREDIT_CARD">CREDIT CARD</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="inscripcionForm.invalid">
+      Inscribirse
+    </button>
+  </form>
+
+  <div *ngIf="mensaje" class="alert alert-info mt-3">
+    {{ mensaje }}
+  </div>
+</div>
