@@ -12,17 +12,7 @@ export class PurchaseService {
   private http = inject(HttpClient);
   private storageService = inject(StorageService);
 
-  inscribirseEvento(eventoId: number | undefined, tipoPago: string): Observable<string> {
-    const loginData = localStorage.getItem('tech_auth');
-    const token = loginData ? JSON.parse(loginData).token : null;
-
-    // Validar que el token exista
-    if (!token) {
-      console.error('Token no encontrado en localStorage.');
-      throw new Error('No estás autenticado. Inicia sesión para continuar.');
-    }
-
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+  inscribirseEvento(eventoId: number, tipoPago: string): Observable<string> {
 
     // Obtener el ID del participante
     const participanteId = this.storageService.getAuthData()?.idParticipante;
@@ -39,13 +29,13 @@ export class PurchaseService {
       throw new Error('El ID del evento no puede ser nulo.');
     }
 
-    const url = `${this.baseURL}/purchase`;
-    const body = { eventoId, participanteId, tipoPago };
+    const url = `${this.baseURL}/purchase?eventoId=${eventoId}&participanteId=${participanteId}&tipoPago=${tipoPago}`;
+    const body = { participanteId };
 
     // Depuración: Imprimir los datos enviados
     console.log('Enviando solicitud de inscripción:', body);
 
-    return this.http.post<string>(url, body, { headers, responseType: 'text' as 'json' }).pipe(
+    return this.http.post<string>(url, body, {  responseType: 'text' as 'json' }).pipe(
       tap((response) => {
         console.log('Respuesta del servidor:', response);
       }),
