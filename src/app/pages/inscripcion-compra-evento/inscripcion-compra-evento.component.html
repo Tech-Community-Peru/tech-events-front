@@ -1,4 +1,11 @@
 <div class="container">
+
+  <div class="mb-4">
+    <button class="btn btn-danger" [routerLink]="'/events/:id'">
+      <i class="bi bi-arrow-left"></i> Regresar
+    </button>
+  </div>
+
   <h1>Inscribirse en un Evento</h1>
   <form [formGroup]="inscripcionForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
