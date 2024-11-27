@@ -1,12 +1,13 @@
 import { Component, OnInit, inject, effect } from '@angular/core';
 import { EventService, Event } from '../../core/services/event.service';
 import { CommonModule } from '@angular/common';
-import {Router, RouterLink} from '@angular/router';
+import {Router, RouterLink,ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../core/service/auth.service';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {EventoResponse} from '../../shared/models/evento-response.model';
+import { PurchaseService } from '../../core/service/purchase.service';
 
 @Component({
   selector: 'app-event-list',
@@ -27,6 +28,8 @@ export class EventListComponent implements OnInit {
   private eventService = inject(EventService);
   private router = inject(Router);
   private authService = inject(AuthService);
+  private purchaseService = inject(PurchaseService);
+  private route = inject(ActivatedRoute);
 
   isAuthenticated = this.authService.getAuthStatusSignal(); // Usa una señal para el estado de autenticación
   constructor() {
@@ -62,6 +65,13 @@ export class EventListComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    const token = this.route.snapshot.queryParamMap.get('token');
+    if (token) {
+      console.log('Token recibido desde la URL:', token); // Depuración
+      this.capturePayment(token); // Llamar al método para capturar el pago
+    }
+
     this.eventService.getAllEvents().subscribe({
       next: (data) => {
         this.events = data;
@@ -90,6 +100,24 @@ export class EventListComponent implements OnInit {
     } else {
       console.error('Evento no encontrado');
     }
+  }
+
+  private capturePayment(token: string): void {
+    this.purchaseService.capturePaypalOrder(token).subscribe({
+      next: (response) => {
+        console.log('Respuesta de captura de pago:', response); // Depuración
+        if (response.completed) {
+          alert(
+            'Tu inscripción y compra se ha realizado con éxito. Recibirás un correo de nuestra parte con los datos del evento.'
+          );
+        } else {
+          console.warn('El pago no fue completado.');
+        }
+      },
+      error: (error) => {
+        console.error('Error al capturar el pago:', error);
+      },
+    });
   }
 
 
