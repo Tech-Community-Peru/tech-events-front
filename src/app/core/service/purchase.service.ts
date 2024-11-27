@@ -45,5 +45,57 @@ export class PurchaseService {
       })
     );
   }
+
+  obtenerIdInscripcion(eventoId: number): Observable<number> {
+    const participanteId = this.storageService.getAuthData()?.idParticipante;
+    if (!participanteId) {
+      throw new Error('No se encontró el ID del participante.');
+    }
+  
+    const url = `${environment.baseURL}/inscripcion/evento/${eventoId}/participante/${participanteId}`;
+    return this.http.get<number>(url).pipe(
+      tap((response) => {
+        if (isNaN(Number(response))) {
+          console.error('Respuesta inesperada:', response);
+          throw new Error('La respuesta no es un ID válido.');
+        }
+      }),
+      catchError((error) => {
+        console.error('Error al obtener ID de inscripción:', error);
+        throw error;
+      })
+    );
+  }
+  
+  obtenerLinkPayPal(inscriptionId: number): Observable<{ paypalUrl: string }> {
+    const url = `${environment.baseURL}/checkout/create?inscriptionId=${inscriptionId}&returnUrl=${environment.paypalReturnUrl}&cancelUrl=${environment.paypalReturnUrl}`;
+  
+    return this.http.post<{ paypalUrl: string }>(url, {}).pipe(
+      tap((response) => console.log('Enlace de PayPal generado:', response)),
+      catchError((error) => {
+        console.error('Error al generar el enlace de PayPal:', error);
+        throw error;
+      })
+    );
+  }
+
+  capturePaypalOrder(orderId: string): Observable<{ completed: boolean; inscriptionId: number }> {
+    const url = `${environment.baseURL}/checkout/capture?orderId=${orderId}`;
+    
+    return this.http.post<{ completed: boolean; inscriptionId: number }>(url, {}).pipe(
+      tap((response) => {
+        if (!response.completed) {
+          console.error('La captura del pago no se completó:', response);
+          throw new Error('El pago no fue completado correctamente.');
+        }
+        console.log('Pago capturado exitosamente:', response);
+      }),
+      catchError((error) => {
+        console.error('Error al capturar el pago:', error);
+        throw error;
+      })
+    );
+  }
+  
 }
 

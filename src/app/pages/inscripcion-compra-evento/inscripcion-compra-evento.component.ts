@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PurchaseService } from '../../core/service/purchase.service';
@@ -17,6 +17,8 @@ export class InscripcionCompraEventoComponent implements OnInit {
   mensaje: string | null = null;
   selectedEvent: EventoResponse | null = null;
   isFreeEvent: boolean = false;  // Nueva variable para verificar si es gratuito
+
+  private route = inject(ActivatedRoute);
 
   constructor(
     private fb: FormBuilder,
@@ -38,33 +40,84 @@ export class InscripcionCompraEventoComponent implements OnInit {
         this.isFreeEvent = true;
       }
     }
+    
   }
 
   onSubmit(): void {
     if (this.inscripcionForm.valid) {
-      const { tipoPago } = this.inscripcionForm.value;
-
+      let { tipoPago } = this.inscripcionForm.value;
+  
+      if (this.isFreeEvent) {
+        // Si el evento es gratuito, forzamos el tipo de pago a "FREE"
+        tipoPago = 'FREE';
+      }
+  
       if (this.selectedEvent) {
         const eventoId = this.selectedEvent.id;
+  
         if (!eventoId) {
           this.mensaje = 'Error: No se encontró el ID del evento. Por favor, selecciona un evento válido.';
           console.error('Evento ID faltante.');
           return;
         }
-
-        this.purchaseService.inscribirseEvento(eventoId, tipoPago).subscribe({
-          next: (response) => {
-            this.mensaje = `¡Inscripción exitosa! Respuesta del servidor: ${response}`;
-          },
-          error: (error) => {
-            console.error('Error al inscribirse:', error);
-            this.mensaje =
-              'Hubo un problema al intentar inscribirte. Por favor, verifica los datos e intenta nuevamente.';
-          },
-        });
+  
+        if (this.isFreeEvent) {
+          // Si el evento es gratuito, omitir pasos de pago y proceder directamente
+          this.purchaseService.inscribirseEvento(eventoId, tipoPago).subscribe({
+            next: () => {
+              alert('¡Tu inscripción al evento gratuito se realizó con éxito!'); 
+              this.mensaje = '¡Tu inscripción al evento gratuito se realizó con éxito!'; 
+              console.log('Inscripción completada para evento gratuito.');
+            },
+            error: () => {
+              this.mensaje = 'Hubo un problema al inscribirte al evento gratuito. Por favor, inténtalo nuevamente.';
+              console.error('Error durante la inscripción al evento gratuito.');
+            },
+          });
+        } else {
+          // Si el evento no es gratuito, continuar con el flujo de pago
+          this.purchaseService.inscribirseEvento(eventoId, tipoPago).subscribe({
+            next: () => {
+              // Si la inscripción se realiza con éxito
+              this.continuarConPago(eventoId);
+            },
+            error: () => {
+              // Si hay un error, asumimos que existe una inscripción pendiente y continuamos
+              this.mensaje = 'Se encontró una inscripción pendiente. Continuando con el proceso de pago.';
+              console.warn('Error detectado, intentando continuar con el proceso de inscripción...');
+              this.continuarConPago(eventoId);
+            },
+          });
+        }
       }
     } else {
       this.mensaje = 'Por favor, completa correctamente todos los campos.';
     }
+  }
+  
+  private continuarConPago(eventoId: number): void {
+    this.purchaseService.obtenerIdInscripcion(eventoId).subscribe({
+      next: (response) => {
+        if (response && !isNaN(Number(response))) {
+          const idInscripcion = Number(response);
+          this.purchaseService.obtenerLinkPayPal(idInscripcion).subscribe({
+            next: (checkoutResponse) => {
+              const paypalUrl = checkoutResponse.paypalUrl;
+              window.location.href = paypalUrl; // Redirigir al enlace de PayPal
+            },
+            error: () => {
+              console.error('Error al obtener el enlace de PayPal.');
+              this.mensaje = 'Hubo un problema al generar el enlace de pago, estamos recibiendo muchas consultas, por favor inténtalo nuevamente en unos minutos.';
+            },
+          });
+        } else {
+          this.mensaje = 'No se pudo obtener el ID de inscripción o el usuario no está inscrito.';
+        }
+      },
+      error: () => {
+        console.error('Error al obtener el ID de inscripción.');
+        this.mensaje = 'Hubo un problema al recuperar la inscripción.';
+      },
+    });
   }
 }
