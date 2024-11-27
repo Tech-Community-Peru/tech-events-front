@@ -1,17 +1,17 @@
 .container {
-    max-width: 960px;
-  }
+  max-width: 960px;
+}
 
-  .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
 
-  .card:hover {
-    transform: translateY(-5px);
-  }
+.card:hover {
+  transform: translateY(-5px);
+}
 
-  /* General Styles */
+/* General Styles */
 body.body-event-list, html.eventListHtml {
   margin: 0;
   padding: 0;
@@ -25,7 +25,7 @@ body.body-event-list, html.eventListHtml {
   background-image: radial-gradient(#1e90ff 0%, #0e5bad 100%);
 }
 
-.form-label{
+.form-label {
   color: white;
   font-size: 1.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -82,6 +82,21 @@ h2.text-center {
   transform: scale(1.05);
 }
 
+.btn-create-event {
+  background-color: #28a745;
+  border-color: #28a745;
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: white;
+  font-size: 1.1rem;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-create-event:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
 /* Animations for Floating Elements */
 .box div {
   position: absolute;
@@ -125,11 +140,11 @@ h2.text-center {
 
 @keyframes animate {
   0% {
-      transform: scale(0) translateY(0) rotate(0);
-      opacity: 1;
+    transform: scale(0) translateY(0) rotate(0);
+    opacity: 1;
   }
   100% {
-      transform: scale(1.5) translateY(-90px) rotate(360deg);
-      opacity: 0;
+    transform: scale(1.5) translateY(-90px) rotate(360deg);
+    opacity: 0;
   }
 }

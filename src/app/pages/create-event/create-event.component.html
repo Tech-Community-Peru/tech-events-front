@@ -1,0 +1,92 @@
+<div class="wrapper-create-event">
+  <div class="container">
+    <h2 class="text-center">Crear Nuevo Evento</h2>
+
+    <form [formGroup]="createEventForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre del Evento</label>
+        <input
+          id="nombre"
+          class="form-control"
+          formControlName="nombre"
+          type="text"
+          placeholder="Ingrese el nombre del evento"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="costo" class="form-label">Costo</label>
+        <input
+          id="costo"
+          class="form-control"
+          formControlName="costo"
+          type="number"
+          min="0"
+          placeholder="Ingrese el costo del evento"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea
+          id="descripcion"
+          class="form-control"
+          formControlName="descripcion"
+          rows="3"
+          placeholder="Ingrese la descripción del evento"
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="eventoCategoria" class="form-label">Categoría</label>
+        <select id="eventoCategoria" class="form-select" formControlName="eventoCategoria">
+          <option value="">Seleccione una categoría</option>
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="tipoEvento" class="form-label">Tipo de Evento</label>
+        <select id="tipoEvento" class="form-select" formControlName="tipoEvento">
+          <option value="">Seleccione el tipo</option>
+          <option *ngFor="let type of eventTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="nombreUbicacion" class="form-label">Ubicación</label>
+        <input
+          id="nombreUbicacion"
+          class="form-control"
+          formControlName="nombreUbicacion"
+          type="text"
+          placeholder="Ingrese la ubicación (opcional)"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="ponente" class="form-label">Ponente</label>
+        <input
+          id="ponente"
+          class="form-control"
+          formControlName="ponente"
+          type="text"
+          placeholder="Ingrese el nombre del ponente (opcional)"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="comunidad" class="form-label">Comunidad</label>
+        <input
+          id="comunidad"
+          class="form-control"
+          formControlName="comunidad"
+          type="text"
+          placeholder="Ingrese el nombre de la comunidad (opcional)"
+        />
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="createEventForm.invalid">Crear Evento</button>
+    </form>
+  </div>
+</div>

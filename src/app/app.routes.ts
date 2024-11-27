@@ -1,29 +1,28 @@
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import {CreateEventComponent} from './pages/create-event/create-event.component';
 
 export const routes: Routes = [
-  // Ruta por defecto: si no está autenticado, ir al login
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
 
-  // Ruta para la autenticación
+  // Autenticación
   {
     path: 'auth',
     loadChildren: () =>
       import('./pages/auth/auth.routes').then((a) => a.authRoutes),
-
   },
 
-  // Ruta para el dashboard después de iniciar sesión
+  // Dashboard
   {
     path: 'dashboard',
     loadComponent: () =>
       import('./pages/participante/dashboard/dashboard.component').then(
         (m) => m.DashboardComponent
       ),
-      canActivate:[authGuard]
+    canActivate: [authGuard],
   },
 
-  // Rutas para eventos
+  // Eventos
   {
     path: 'events',
     loadComponent: () =>
@@ -45,6 +44,10 @@ export const routes: Routes = [
         (m) => m.InscripcionCompraEventoComponent
       ),
   },
+  { path: 'create-event', component: CreateEventComponent, canActivate: [authGuard] },
+
+
+  // Inscripciones
   {
     path: 'inscriptions/:id',
     loadComponent: () =>
@@ -59,6 +62,8 @@ export const routes: Routes = [
         (m) => m.InscriptionComponent
       ),
   },
+
+  // Perfil de usuario
   {
     path: 'userprofile/modificarPerfil',
     loadComponent: () =>
@@ -66,7 +71,6 @@ export const routes: Routes = [
         (m) => m.UpdateProfileComponent
       ),
   },
-
   {
     path: 'userprofile',
     loadComponent: () =>
@@ -75,8 +79,7 @@ export const routes: Routes = [
       ),
   },
 
-
-
-  // Ruta por defecto para cualquier otra URL
+  // Ruta por defecto
   { path: '**', redirectTo: 'auth/login' },
 ];
+
