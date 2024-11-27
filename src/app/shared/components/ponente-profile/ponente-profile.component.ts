@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FooterComponent} from '../footer/footer.component';
 import {NavbarComponent} from '../navbar/navbar.component';
 import {RegisterResponse} from '../../models/register-response.model';
@@ -17,7 +17,7 @@ import {RegisterResponsePonente} from '../../models/register-responsePonente.mod
   templateUrl: './ponente-profile.component.html',
   styleUrl: './ponente-profile.component.css'
 })
-export class PonenteProfileComponent {
+export class PonenteProfileComponent implements OnInit {
   user: RegisterResponsePonente | null = null;
 
   constructor(private registerPonenteResponse: AuthService) {}

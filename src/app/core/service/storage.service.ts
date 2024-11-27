@@ -11,6 +11,7 @@ import {RegisterResponsePonente} from '../../shared/models/register-responsePone
 export class StorageService {
   private authkey = 'tech_auth';
   private registerKey = 'tech_register';
+  private ponenteKey = 'tech_ponente';
 
   constructor() {}
 
@@ -34,18 +35,20 @@ export class StorageService {
     apellido: string;
     id: number;
     paisOrigen: any;
-    idPonente: number;
     cargo: string;
     correoElectronico: string;
     nombre: string;
-    especialidad: string
+    especialidad: string;
+    idPonente: number
   }): void {
-      localStorage.setItem(this.registerKey, JSON.stringify(data));
+
+
+      localStorage.setItem(this.ponenteKey, JSON.stringify(data));
       console.log('Datos registrados en localStorage:', data);
   }
 
   getRegisterPonenteData(): RegisterResponsePonente | null {
-    const data = localStorage.getItem(this.registerKey);
+    const data = localStorage.getItem(this.ponenteKey);
     return data? JSON.parse(data) as RegisterResponsePonente: null;
   }
 

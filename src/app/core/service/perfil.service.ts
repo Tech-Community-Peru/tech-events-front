@@ -62,7 +62,8 @@ export class PerfilService {
 
   actualizarPerfilPonente(actualizarperfilRequestPonente: ActualizarperfilRequestPonente): Observable<string> {
 
-    const id = this.storageService.getRegisterPonenteData()?.id;
+    const id = this.storageService.getAuthData()?.idUsuario;
+    console.log('ID:', id);
     if (!id) {
       console.error('ID no encontrado en el almacenamiento.');
       throw new Error('No se encontró el ID. Verifica tu autenticación.');

@@ -51,17 +51,17 @@ export class UpdateProfilePonenteComponent {
     this.perfilService.actualizarPerfilPonente(profileData).subscribe({
       next: () => {
         // Recuperar los datos existentes del almacenamiento
-        const existingData = this.storageService.getRegisterData();
+        const existingData = this.storageService.getRegisterPonenteData();
 
         if (existingData) {
           // Combinar los datos existentes con los actualizados
-          const updatedData: RegisterResponse = {
+          const updatedData: RegisterResponsePonente = {
             ...existingData, // Mantén los campos existentes
             ...profileData,  // Sobrescribe con los datos actualizados
           };
 
           // Guardar los datos combinados en el almacenamiento
-          this.storageService.setRegisterData(updatedData);
+          this.storageService.setRegisterPonenteData(updatedData);
         }
 
         this.snackBar.open('Perfil actualizado exitosamente.', 'Cerrar', { duration: 3000 });
