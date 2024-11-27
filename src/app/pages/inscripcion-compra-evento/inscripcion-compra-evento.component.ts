@@ -45,7 +45,12 @@ export class InscripcionCompraEventoComponent implements OnInit {
 
   onSubmit(): void {
     if (this.inscripcionForm.valid) {
-      const { tipoPago } = this.inscripcionForm.value;
+      let { tipoPago } = this.inscripcionForm.value;
+  
+      if (this.isFreeEvent) {
+        // Si el evento es gratuito, forzamos el tipo de pago a "FREE"
+        tipoPago = 'FREE';
+      }
   
       if (this.selectedEvent) {
         const eventoId = this.selectedEvent.id;
