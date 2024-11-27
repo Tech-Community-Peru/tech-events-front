@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import { AuthService } from '../../../core/service/auth.service';
 
 @Component({
@@ -12,7 +12,8 @@ import { AuthService } from '../../../core/service/auth.service';
 export class NavbarComponent {
   private authService = inject(AuthService);
   isAuthenticated: boolean = false;
-  
+  private router = inject(Router);
+
   ngOnInit(): void{
     this.isAuthenticated = this.authService.isAuthenticated();
   }
@@ -20,5 +21,25 @@ export class NavbarComponent {
   logout(): void {
     this.authService.logout();
     this.isAuthenticated = false;
+  }
+
+  back() {
+    if(this.authService.getUser()?.rol==='Ponente')
+    {
+      this.router.navigateByUrl('/ponente-dashboard');
+    }
+    else{
+      this.router.navigateByUrl('/dashboard');
+    }
+  }
+
+  profile() {
+    if(this.authService.getUser()?.rol==='Ponente')
+    {
+      this.router.navigateByUrl('/ponente-profile');
+    }
+    else{
+      this.router.navigateByUrl('/user-profile');
+    }
   }
 }

@@ -113,7 +113,6 @@ line-height: normal;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: opacity(0.7) multiply; /* Aplicar filtro de multiplicación con opacidad */
     background-color: #705CDF; /* Color de multiplicación */
 }
 

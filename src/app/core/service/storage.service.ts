@@ -3,6 +3,7 @@ import {AuthResponse} from '../../shared/models/auth-response.model';
 import {RegisterResponse} from '../../shared/models/register-response.model';
 import {ActualizarPerfilResponse} from '../../shared/models/actualizarperfil-response.model';
 import {ActualizarPerfilRequest} from '../../shared/models/actualizarperfil-request.model';
+import {RegisterResponsePonente} from '../../shared/models/register-responsePonente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class StorageService {
     apellido: string;
     id: number;
     paisOrigen: any;
-    idParticipante: number;
+    idPonente: number;
     cargo: string;
     correoElectronico: string;
     nombre: string;
@@ -43,9 +44,9 @@ export class StorageService {
       console.log('Datos registrados en localStorage:', data);
   }
 
-  getRegisterPonenteData(): ActualizarPerfilRequest | null {
+  getRegisterPonenteData(): RegisterResponsePonente | null {
     const data = localStorage.getItem(this.registerKey);
-    return data? JSON.parse(data) as ActualizarPerfilRequest: null;
+    return data? JSON.parse(data) as RegisterResponsePonente: null;
   }
 
   setRegisterData(data: RegisterResponse): void {
