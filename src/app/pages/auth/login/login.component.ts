@@ -57,7 +57,14 @@ export class LoginComponent {
         console.log('Datos de logeo:', authData);
         this.showSnackBar('Inicio de sesión exitoso');
         // Redirigir al dashboard
-        this.router.navigate(['/dashboard']);
+
+        if(this.authService.getUser()?.rol==='Ponente')
+        {
+          this.router.navigateByUrl('/ponente-dashboard');
+        }
+        else{
+          this.router.navigateByUrl('/dashboard');
+        }
       },
       error: (err) => {
         // Manejar el error del backend

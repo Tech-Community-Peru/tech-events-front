@@ -55,7 +55,7 @@ export class AuthService {
         const registerData = {
           id: response.id,
           correoElectronico: response.correoElectronico,
-          idParticipante: response.idPonente, // Convert idPonente to idParticipante
+          idPonente: response.idPonente, // Convert idPonente to idParticipante
           nombre: response.nombre,
           apellido: response.apellido,
           cargo: response.cargo,
@@ -99,6 +99,11 @@ export class AuthService {
   }
   getUsuario(): RegisterResponse | null {
     const registerData = this.storageService.getRegisterData();
+    return registerData ? registerData : null;
+  }
+
+  getPonente(): RegisterResponsePonente | null {
+    const registerData = this.storageService.getRegisterPonenteData();
     return registerData ? registerData : null;
   }
 

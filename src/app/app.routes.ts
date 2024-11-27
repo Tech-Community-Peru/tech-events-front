@@ -13,6 +13,35 @@ export const routes: Routes = [
 
   },
 
+
+  //////////PONENTE//////////
+  {
+    path: 'ponente-dashboard',
+    loadComponent: () =>
+      import('./pages/ponente/ponente-dashboard/ponente-dashboard.component').then(
+        (m) => m.PonenteDashboardComponent
+      ),
+    canActivate:[authGuard]
+  },
+
+  {
+    path: 'ponente-profile',
+    loadComponent: () =>
+      import('./shared/components/ponente-profile/ponente-profile.component').then(
+        (m) => m.PonenteProfileComponent
+      ),
+  },
+
+  {
+    path: 'ponente-profile/modificarPerfil',
+    loadComponent: () =>
+      import('./shared/components/update-profile-ponente/update-profile-ponente.component').then(
+        (m) => m.UpdateProfilePonenteComponent
+      ),
+  },
+
+  /////////////////////
+
   // Ruta para el dashboard después de iniciar sesión
   {
     path: 'dashboard',
@@ -22,6 +51,9 @@ export const routes: Routes = [
       ),
       canActivate:[authGuard]
   },
+
+
+
 
   // Rutas para eventos
   {
@@ -48,14 +80,14 @@ export const routes: Routes = [
   {
     path: 'inscriptions/:id',
     loadComponent: () =>
-      import('./pages/inscription/inscription-details/inscription-details').then(
+      import('./pages/participante/inscription-details/inscription-details').then(
         (m) => m.InscriptionDetailsComponent
       ),
   },
   {
     path: 'inscriptions',
     loadComponent: () =>
-      import('./pages/inscription/inscription.component').then(
+      import('./pages/participante/inscription/inscription.component').then(
         (m) => m.InscriptionComponent
       ),
   },
@@ -68,7 +100,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'userprofile',
+    path: 'user-profile',
     loadComponent: () =>
       import('./shared/components/user-profile/user-profile.component').then(
         (m) => m.UserProfileComponent

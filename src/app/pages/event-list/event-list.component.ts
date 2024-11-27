@@ -93,4 +93,14 @@ export class EventListComponent implements OnInit {
   }
 
 
+  back() {
+
+    if(this.authService.getUser()?.rol==='Ponente')
+    {
+      this.router.navigateByUrl('/ponente-dashboard');
+    }
+    else{
+      this.router.navigateByUrl('/dashboard');
+    }
+  }
 }

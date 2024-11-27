@@ -1,12 +1,12 @@
 import {Component, inject, OnInit} from '@angular/core';
-import { EventService } from '../../core/services/event.service';
-import { EventoResponse } from '../../shared/models/evento-response.model';
+import { EventService } from '../../../core/services/event.service';
+import { EventoResponse } from '../../../shared/models/evento-response.model';
 import {CurrencyPipe, NgForOf} from '@angular/common';
-import {NavbarComponent} from '../../shared/components/navbar/navbar.component';
-import {FooterComponent} from '../../shared/components/footer/footer.component';
+import {NavbarComponent} from '../../../shared/components/navbar/navbar.component';
+import {FooterComponent} from '../../../shared/components/footer/footer.component';
 import {Router, RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {StorageService} from '../../core/service/storage.service';
+import {StorageService} from '../../../core/service/storage.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

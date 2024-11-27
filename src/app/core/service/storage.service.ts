@@ -3,6 +3,7 @@ import {AuthResponse} from '../../shared/models/auth-response.model';
 import {RegisterResponse} from '../../shared/models/register-response.model';
 import {ActualizarPerfilResponse} from '../../shared/models/actualizarperfil-response.model';
 import {ActualizarPerfilRequest} from '../../shared/models/actualizarperfil-request.model';
+import {RegisterResponsePonente} from '../../shared/models/register-responsePonente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import {ActualizarPerfilRequest} from '../../shared/models/actualizarperfil-requ
 export class StorageService {
   private authkey = 'tech_auth';
   private registerKey = 'tech_register';
+  private ponenteKey = 'tech_ponente';
 
   constructor() {}
 
@@ -33,19 +35,21 @@ export class StorageService {
     apellido: string;
     id: number;
     paisOrigen: any;
-    idParticipante: number;
     cargo: string;
     correoElectronico: string;
     nombre: string;
-    especialidad: string
+    especialidad: string;
+    idPonente: number
   }): void {
-      localStorage.setItem(this.registerKey, JSON.stringify(data));
+
+
+      localStorage.setItem(this.ponenteKey, JSON.stringify(data));
       console.log('Datos registrados en localStorage:', data);
   }
 
-  getRegisterPonenteData(): ActualizarPerfilRequest | null {
-    const data = localStorage.getItem(this.registerKey);
-    return data? JSON.parse(data) as ActualizarPerfilRequest: null;
+  getRegisterPonenteData(): RegisterResponsePonente | null {
+    const data = localStorage.getItem(this.ponenteKey);
+    return data? JSON.parse(data) as RegisterResponsePonente: null;
   }
 
   setRegisterData(data: RegisterResponse): void {
