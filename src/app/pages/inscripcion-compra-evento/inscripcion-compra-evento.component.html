@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="mb-4">
     <button class="btn btn-danger" [routerLink]="'/events/:id'">
       <i class="bi bi-arrow-left"></i> Regresar
@@ -10,17 +9,28 @@
   <form [formGroup]="inscripcionForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>ID del Evento:</label>
+      <p>{{ selectedEvent?.id }}</p> <!-- Mostrar el ID del evento -->
     </div>
 
     <div class="form-group">
+      <label>Precio del Evento:</label>
+      <strong>{{ selectedEvent?.costo | currency }}</strong> <!-- Mostrar precio del evento -->
+    </div>
+    
+
+    <div class="form-group">
       <label for="tipoPago">Tipo de Pago:</label>
+
+      <!-- Mostrar como FREE si el evento es gratuito -->
       <select
         id="tipoPago"
         formControlName="tipoPago"
         class="form-control"
-        required>
-        <option value="DEBIT_CARD">DEBIT CARD</option>
-        <option value="CREDIT_CARD">CREDIT CARD</option>
+        required
+        [disabled]="isFreeEvent">
+        <option value="DEBIT_CARD" *ngIf="!isFreeEvent">DEBIT CARD</option>
+        <option value="CREDIT_CARD" *ngIf="!isFreeEvent">CREDIT CARD</option>
+        <option value="FREE" *ngIf="isFreeEvent">FREE</option>
       </select>
     </div>
 
