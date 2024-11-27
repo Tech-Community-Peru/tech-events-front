@@ -45,7 +45,13 @@ export const routes: Routes = [
         (m) => m.InscripcionCompraEventoComponent
       ),
   },
-
+  {
+    path: 'inscriptions/:id',
+    loadComponent: () =>
+      import('./pages/inscription/inscription-details/inscription-details').then(
+        (m) => m.InscriptionDetailsComponent
+      ),
+  },
   {
     path: 'inscriptions',
     loadComponent: () =>

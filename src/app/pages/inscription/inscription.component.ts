@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { EventService } from '../../core/services/event.service';
 import { EventoResponse } from '../../shared/models/evento-response.model';
 import {CurrencyPipe, NgForOf} from '@angular/common';
 import {NavbarComponent} from '../../shared/components/navbar/navbar.component';
 import {FooterComponent} from '../../shared/components/footer/footer.component';
-import {RouterModule} from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {StorageService} from '../../core/service/storage.service';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 export class InscriptionComponent implements OnInit {
   eventos: EventoResponse[] = [];
   idParticipante: number | null = null; // Inicializamos como null hasta obtenerlo dinámicamente
+  private router = inject(Router);
 
   constructor(
     private eventoService: EventService,
@@ -36,7 +37,7 @@ export class InscriptionComponent implements OnInit {
       console.error('Usuario no autenticado o idParticipante ausente.');
     }
   }
-  
+
 
 
   // Cargar eventos inscritos al usuario
@@ -57,14 +58,19 @@ export class InscriptionComponent implements OnInit {
     );
   }
 
-  // Ver detalles del evento
-  viewEventDetails(eventId: number): void {
-    console.log('Ver detalles del evento con ID:', eventId);
-    // Lógica para manejar detalles del evento (modal, navegación, etc.)
-  }
 
-  // Método para filtrar eventos por categoría
-  filterEventsByCategory(tipoEvento: string): void {
-    // Lógica para filtrar eventos si se implementa
+
+  // Ver detalles del evento
+  viewEventDetails(id: number): void {
+    const selectedEvent = this.eventos.find(event => event.id === id);
+    if (selectedEvent) {
+      // Guarda los detalles del evento en el almacenamiento local
+      sessionStorage.setItem('selectedEvent', JSON.stringify(selectedEvent));
+
+      // Redirige a la página de detalles
+      this.router.navigate([`/inscriptions/:${id}`]);
+    } else {
+      console.error('Evento no encontrado');
+    }
   }
 }
