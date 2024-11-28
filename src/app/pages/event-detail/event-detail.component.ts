@@ -54,4 +54,14 @@ export class EventDetailComponent implements OnInit {
       console.error('Evento no encontrado');
     }
   }
+  navigateToEditEvent(): void {
+    if (this.selectedEvent && this.selectedEvent.id) {
+      // Redirige al componente de edición con el ID del evento
+      this.router.navigate(['/edit-event', this.selectedEvent.id]);
+    } else {
+      console.error('Evento no encontrado o sin ID válido para editar.');
+    }
+  }
+
+
 }

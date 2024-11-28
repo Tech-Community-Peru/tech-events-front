@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import {CreateEventComponent} from './pages/create-event/create-event.component';
+import {EventEditComponent} from './pages/event-edit/event-edit.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -45,6 +46,17 @@ export const routes: Routes = [
       ),
   },
   { path: 'create-event', component: CreateEventComponent, canActivate: [authGuard] },
+  {
+    path: 'edit-event/:id',
+    loadComponent: () =>
+      import('./pages/event-edit/event-edit.component').then(
+        (m) => m.EventEditComponent
+      ),
+    canActivate: [authGuard],
+  },
+
+
+
 
 
   // Inscripciones

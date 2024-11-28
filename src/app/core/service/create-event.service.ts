@@ -30,11 +30,11 @@ export interface CreateEventResponse {
   providedIn: 'root',
 })
 export class CreateEventService {
-  private apiUrl = `${environment.baseURL}/eventocu/create`;
+  private apiUrl = `${environment.baseURL}/eventocu`;
 
   constructor(private http: HttpClient) {}
 
   createEvent(event: CreateEventRequest): Observable<CreateEventResponse> {
-    return this.http.post<CreateEventResponse>(this.apiUrl, event);
+    return this.http.post<CreateEventResponse>(`${this.apiUrl}/create`, event);
   }
 }
