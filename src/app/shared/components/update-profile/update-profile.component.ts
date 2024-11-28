@@ -66,7 +66,7 @@ export class UpdateProfileComponent {
         }
 
         this.snackBar.open('Perfil actualizado exitosamente.', 'Cerrar', { duration: 3000 });
-        this.router.navigate(['/userprofile']);
+        this.router.navigate(['/user-profile']);
       },
       error: (err) => {
         console.error('Error al actualizar perfil:', err.message);

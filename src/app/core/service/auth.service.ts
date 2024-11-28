@@ -10,6 +10,7 @@ import { RegisterResponse } from '../../shared/models/register-response.model';
 import { RegisterRequestPonente } from '../../shared/models/register-requestPonente.model';
 import { RegisterResponsePonente } from '../../shared/models/register-responsePonente.model';
 import { environment } from '../../../environments/environment';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class AuthService {
   private baseURL = `${environment.baseURL}/auth`;
   private http = inject(HttpClient);
   private storageService = inject(StorageService);
+  private router = inject(Router);
 
   // Señal para el estado de autenticación
   private isAuthenticatedSignal = signal(this.isAuthenticated());

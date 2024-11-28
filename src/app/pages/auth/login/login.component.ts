@@ -52,7 +52,8 @@ export class LoginComponent {
 
     const credentials: AuthRequest = this.loginForm.value;
 
-    this.authService.login(credentials).subscribe({
+    this.authService.login(credentials).subscribe(
+      {
       next: (authData) => {
         console.log('Datos de logeo:', authData);
         this.showSnackBar('Inicio de sesión exitoso');
@@ -66,6 +67,7 @@ export class LoginComponent {
           this.router.navigateByUrl('/dashboard');
         }
       },
+
       error: (err) => {
         // Manejar el error del backend
         const errorMessage = err.error?.message || 'Error en el inicio de sesión. Por favor, intenta de nuevo.';
