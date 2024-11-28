@@ -59,12 +59,16 @@ export class LoginComponent {
         this.showSnackBar('Inicio de sesión exitoso');
         // Redirigir al dashboard
 
-        if(this.authService.getUser()?.rol==='Ponente')
-        {
-          this.router.navigateByUrl('/ponente-dashboard');
-        }
-        else{
-          this.router.navigateByUrl('/dashboard');
+        if (this.authService.getUser()?.rol === 'Administrador') {
+          this.router.navigate(['/admin-dashboard']);
+        } else {
+          if(this.authService.getUser()?.rol==='Ponente')
+            {
+              this.router.navigateByUrl('/ponente-dashboard');
+            }
+            else{
+              this.router.navigateByUrl('/dashboard');
+            }
         }
       },
 
