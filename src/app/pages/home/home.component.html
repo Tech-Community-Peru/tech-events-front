@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Community - Eventos de tecnologia</title>
+  <!-- Descripción de la página -->
+  <meta name="description"
+    content="Únete a la Tech Community y descubre los mejores eventos de tecnología: charlas, talleres, conferencias y networking para entusiastas y profesionales del sector.">
+
+  <!-- Palabras clave -->
+  <meta name="keywords"
+    content="Tech Community, eventos de tecnología, conferencias, talleres, networking, charlas, tecnología, eventos tech, comunidad tecnológica">
+
+  <!-- Vista para dispositivos móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tipo de contenido -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Tech Community - Eventos de Tecnología">
+  <meta property="og:description"
+    content="Explora eventos de tecnología y conecta con otros profesionales en la Tech Community. Asiste a charlas, talleres y conferencias para expandir tus conocimientos y red de contactos.">
+  <meta property="og:image" content="https://example.com/images/tech-community.jpg">
+  <meta property="og:url" content="https://example.com/tech-community">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tech Community - Eventos de Tecnología">
+  <meta name="twitter:description"
+    content="Únete a la comunidad y descubre los eventos tech más relevantes. Encuentra charlas, conferencias y networking para enriquecer tus conocimientos.">
+  <meta name="twitter:image" content="https://example.com/images/tech-community.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/images/features/tech-community-peru-logo.ico" type="image/x-icon">
+
+  <!-- Canonical URL -->
+  <script src="/js/script.js"></script>
+  <link rel="canonical" href="https://example.com/tech-community">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+
+  <!-- Barra de navegación -->
+
+  <nav class="navbar navbar-expand-lg bg-navbar text-light fixed-top">
+    <div class="container nav-padding">
+      <a class="navbar-brand fw-bold me-auto" href="/index.html">
+        <img src="/assets/images/intro-nav/logo-sin-fondo.png" alt="Logo" width="65" height="65" class="d-inline-block align-text-top text-light">
+      </a>
+      <p class="d-flex fw-bold me-auto">TECH COMMUNITY PERU</p>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav fw-semibold">
+          <li class="nav-item">
+            <a class="nav-link" href="#bienvenida">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#nosotros">Sobre nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#caracteristicas">Características</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonios">Testimonios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+                <button class="btn btn-primary" (click)="navigateToLogin()">Iniciar Sesión</button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+  <!-- Sección de bienvenida --> 
+
+
+    <section id="bienvenida" class="container height-1">
+      <body class="back-1">
+      <!-- Icono microchip en la esquina superior izquierda -->
+      <div class="icon top-left">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 233 233" fill="none">
+          <path d="M169.25 46.75H64.25C54.5851 46.75 46.75 54.5851 46.75 64.25V169.25C46.75 178.915 54.5851 186.75 64.25 186.75H169.25C178.915 186.75 186.75 178.915 186.75 169.25V64.25C186.75 54.5851 178.915 46.75 169.25 46.75Z" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M81.75 46.75V3" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M151.75 46.75V3" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M46.75 151.75H3" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M46.75 81.75H3" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M151.75 186.75V230.5" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M81.75 186.75V230.5" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M186.75 81.75H230.5" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M186.75 151.75H230.5" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M135 136H100" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+  
+      <!-- Icono de base de datos en la esquina inferior izquierda -->
+      <div class="icon bottom-left">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 233 233" fill="none">
+          <path d="M108.625 84.25C166.961 84.25 214.25 66.0615 214.25 43.625C214.25 21.1885 166.961 3 108.625 3C50.2899 3 3 21.1885 3 43.625C3 66.0615 50.2899 84.25 108.625 84.25Z" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 43.625V173.625C3 196.05 50.2875 214.25 108.625 214.25C166.962 214.25 214.25 196.05 214.25 173.625V43.625" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M214.25 108.625C214.25 131.05 166.962 149.25 108.625 149.25C50.2875 149.25 3 131.05 3 108.625" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+  
+      <!-- Texto de bienvenida y descripción en el centro -->
+      <div class=" ">
+        <h1 class="tittle-1 separation-1">Bienvenido a Techcommunity Perú</h1>
+        <p class="sub-1">Sé parte de la revolución digital, ¡únete a la comunidad tech! Descubre los eventos de tecnología más relevantes y conecta con otros profesionales en la comunidad.</p>
+        <p class="sub-1 separation-1">Registrate gratis:</p>
+        <a href="/sections/ " class="nav-link" aria-disabled="true"><button type="button" class="btn btn-outline-primary fw-semibold-1">Registrarme</button></a>
+      </div>
+  
+      <!-- Icono de computadora en la esquina superior derecha -->
+      <div class="icon top-right">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 233 233" fill="none">
+          <path d="M3 68V133C3 141.975 10.2754 149.25 19.25 149.25H116.75C125.725 149.25 133 141.975 133 133V68C133 59.0254 125.725 51.75 116.75 51.75H19.25C10.2754 51.75 3 59.0254 3 68Z" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M43.625 181.75H92.375" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M68 181.75V149.25" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M116.75 19.25V11.125C116.75 6.63772 120.388 3 124.875 3H206.125C210.612 3 214.25 6.63772 214.25 11.125V173.625C214.25 178.112 210.612 181.75 206.125 181.75H141.125" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M179.719 41.5973C178.596 41.5973 177.686 40.6872 177.686 39.5643C177.686 38.4414 178.596 37.5312 179.719 37.5312" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M179.715 41.5973C180.838 41.5973 181.748 40.6872 181.748 39.5643C181.748 38.4414 180.838 37.5312 179.715 37.5312" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M165.5 76.125H214.25" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+  
+      <!-- Icono microchip en la esquina inferior derecha -->
+      <div class="icon bottom-right">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 233 233" fill="none">
+          <path d="M157.5 3.125H60C51.0254 3.125 43.75 10.4004 43.75 19.375V198.125C43.75 207.1 51.0254 214.375 60 214.375H157.5C166.475 214.375 173.75 207.1 173.75 198.125V19.375C173.75 10.4004 166.475 3.125 157.5 3.125Z" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M43.75 51.875H3.125" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M43.75 108.75H3.125" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M43.75 165.625H3.125" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M214.375 51.875H173.75" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M214.375 108.75H173.75" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M214.375 165.625H173.75" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M100.625 165.625H133.125" stroke="#DADADA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </body>
+    </section>
+
+
+  <!-- Secccion de nosotros -->
+  <section id="nosotros" class="container-1 back-2">
+    <div>
+      <h1 class="tittle-2">¿Quienes somos?</h1>
+    </div>
+    <div class="container">
+      <div class="row separation">
+        <div class="col">
+          <img src="/assets/images/features/eventtec1.png" class="img-responsive">
+        </div>
+        <div class="col center">
+          <p class="sub-2">
+            Somos una plataforma dedicada a conectar a personas apasionadas por la tecnología con eventos que impulsen su desarrollo profesional y académico. Ofrecemos un espacio donde usuarios pueden encontrar y registrarse en eventos de tecnología, ya sean gratuitos o de pago, facilitando su acceso a talleres, conferencias, y charlas de expertos en diversas áreas. Nuestro objetivo es crear una comunidad de aprendizaje y networking, donde todos puedan descubrir oportunidades y crecer juntos en el mundo tecnológico..
+          </p>
+          </div>
+      </div>
+      <div class="row">
+        <p class="tittle-2">Nuestra Misión:</p>
+        <div class="col center">
+          <p class="sub-2">
+            Nuestra misión es crear una comunidad tecnológica inclusiva en Perú que conecte a estudiantes, profesionales y entusiastas a través de eventos de tecnología. Organizamos conferencias, talleres y encuentros que permiten a todos, no solo a las grandes empresas, compartir conocimientos y experiencias. Al empoderar a cada miembro de nuestra comunidad, buscamos fortalecer el ecosistema tecnológico del país y fomentar el talento local, uniendo a quienes comparten la pasión por la tecnología y la innovación.
+          </p>
+        </div>
+        <div class="col">
+          <img src="/assets/images/features/eventec2.jpg" class="img-responsive">
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seccion de caracteristicas -->
+
+  <section id="caracteristicas" class="container-1 back-2 linear">
+    <div>
+      <h1 class="tittle-2">Caracteristicas Principales:</h1>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col" style="width: 22rem;">
+          <div class="card">
+            <img src="/assets/images/features/eventec3.png" width="286px" height="210px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Crea Eventos</h5>
+              <p class="card-text">Organiza y lidera eventos que marquen la diferencia. Comparte tus ideas, inspira a otros y aprovecha la oportunidad de mostrar tu talento al mundo. Cada evento es una plataforma para el crecimiento y la innovación, donde tus iniciativas pueden conectar a personas y abrir nuevas puertas.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="width: 22rem;">
+          <div class="card">
+            <img src="/assets/images/features/eventech4.png" width="286px" height="210px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Únete a una Comunidad</h5>
+              <p class="card-text">Forma parte de una comunidad vibrante y apasionada por la tecnología. Encuentra personas con intereses similares, comparte conocimientos y experiencias, y crea lazos que pueden durar toda la vida. Juntos, podemos aprender, crecer y alcanzar nuevas alturas en el ámbito tecnológico.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="width: 22rem;">
+          <div class="card">
+            <img src="/assets/images/features/eventec5.png" width="286px" height="210px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Conecta con Empresas</h5>
+              <p class="card-text">Establece conexiones significativas con empresas del sector. Accede a oportunidades laborales, participa en proyectos colaborativos y expande tu red profesional. Tu próximo gran paso en la carrera puede estar a un clic de distancia, ¡aprovéchalo y sé parte de nuestra comunidad, te esperamos!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seccion de testimonios -->
+  <section id="testimonios" class="container-1 back-2">
+    <h2 class="tittle-2">Testimonios de Usuarios:</h2>
+    <div class="container">
+    <div class="row justify-content-center">
+      <!-- Testimonio de Ponente -->
+      <div class="col" style="width: 22rem;">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/69/69796.png" class="testimonial-icon" alt="Icono de Testimonio">
+          <div class="card-body">
+          <h5 class="card-title">Ponente</h5>
+          <p class="card-text">"La plataforma Tech Community es increíble. Me ha permitido conectar con profesionales y compartir conocimientos."</p>
+        </div>
+      </div>
+      </div>
+      <!-- Testimonio de Participante -->
+      <div class="col" style="width: 22rem;">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/4727/4727366.png" class="testimonial-icon" alt="Icono de Testimonio">
+          <div class="card-body">
+          <h5 class="card-title">Participante</h5>
+          <p class="card-text">"Asistir a eventos a través de Tech Community me ha ayudado a expandir mis conocimientos y mejorar mi red profesional."</p>
+        </div>
+      </div>
+      </div>
+      <!-- Otro Testimonio de Participante -->
+      <div class="col" style="width: 22rem;">
+        <div class="card text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/4727/4727366.png" class="testimonial-icon" alt="Icono de Testimonio">
+          <div class="card-body">
+          <h5 class="card-title">Participante</h5>
+          <p class="card-text">"Es una excelente plataforma para estar al día con los eventos más relevantes del sector tecnológico cerca de mi localidad."</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- Seccion de equipos -->
+  <section id="equipo" class="container-1 back-2">
+  <h2 class="tittle-2">Nuestro Equipo</h2>
+  <div class="container">
+  <div class="row justify-content-center mt-4">
+    <!-- Primera fila con tres tarjetas -->
+    <div class="col" style="width: 18rem;">
+      <div class="card">
+        <div class="card-body">
+          <img src="/assets/images/testimonials/diego-person.jpg"  alt="Foto del miembro del equipo" class="team-photo mb-3">
+          <h5 class="card-title">Sanchez Chuquimango, Diego</h5>
+          <p class="card-text">Estudiante de Ingeniería de Computación y Sistemas (3er año). Con experiencia en Java, Python, SQL, CSS, PostgreSQL y JavaScript. Colaborativo, creativo y con entusiasmo por contribuir a Tech Community, impulsando el desarrollo de eventos tecnológicos.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="width: 18rem;">
+      <div class="card">
+        <div class="card-body text-center">
+          <img src="/assets/images/testimonials/leonardo-person.jpg" alt="Foto del miembro del equipo" class="team-photo mb-3">
+          <h5 class="card-title">Sanchez Romero, Leonardo Gabriel</h5>
+          <p class="card-text">Estudiante de Ingeniería de Computación y Sistemas (3er año). Enfocado en investigación y desarrollo de software, domina JavaScript, Java, Python, C++, SQL y Prolog. Paciente, directo y dispuesto a tomar el liderazgo cuando sea necesario.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="width: 18rem;">
+      <div class="card">
+        <div class="card-body text-center">
+          <img src="/assets/images/testimonials/charlie-person.jpg" alt="Foto del miembro del equipo" class="team-photo mb-3">
+          <h5 class="card-title">Morales Benites, Charlie</h5>
+          <p class="card-text">Estudiante de Ingeniería de Computación y Sistemas de Información (3er año). Con conocimientos en Java, C++, Python, SQL, MySQL y CSS. Apasionado por el trabajo en equipo y el aprendizaje continuo en su carrera profesional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Segunda fila con dos tarjetas centradas -->
+  <div class="row justify-content-center mt-4">
+    <div class="col" style="width: 18rem;">
+      <div class="card">
+        <div class="card-body text-center">
+          <img src="/assets/images/testimonials/rumay-person.jpg" alt="Foto del miembro del equipo" class="team-photo mb-3">
+          <h5 class="card-title">Rumay Yglesias, Eduardo</h5>
+          <p class="card-text">Estudiante de Ingeniería de Computación y Sistemas (3er año). Experto en Java, Python, C++ y desarrollo web. Prefiere el trabajo individual, pero colabora en equipo. Entusiasta por contribuir al crecimiento de Tech Community Peru.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="width: 18rem;">
+      <div class="card">
+        <div class="card-body text-center">
+          <img src="/assets/images/testimonials/orlando-person.jpg" alt="Foto del miembro del equipo" class="team-photo mb-3">
+          <h5 class="card-title">Padilla Rios, Orlando</h5>
+          <p class="card-text">Estudiante de Ingeniería de Computación y Sistemas (6to ciclo). Experiencia en Java, Python, MySQL y metodologías de proyectos orientados al software. Interesado en backend y sistemas transaccionales para asegurar su operación continua. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+  <!-- Seccion de contacto -->
+
+  <!-- Seccion de footer -->
+  <footer>
+    <div class="footer-container">
+        <!-- Sección de Redes Sociales -->
+        <div class="social-media">
+            <h3>Síguenos</h3>
+            <a href="#" aria-label="Facebook" class="social-icon">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" aria-label="Twitter" class="social-icon">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="social-icon">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="social-icon">
+                <i class="bi bi-linkedin"></i>
+            </a>
+        </div>
+
+        <!-- Información de Contacto -->
+        <div class="contact-info">
+            <h3>Contáctanos</h3>
+            <p>Email: techcomuniyperu&#64;gmail.com</p>
+            <p>Teléfono: +51 123 456 789</p>
+            <p>Dirección: Calle Falsa 123, Ciudad, País</p>
+        </div>
+
+        <!-- Enlaces Útiles -->
+        <div class="useful-links">
+            <h3>Enlaces</h3>
+            <a href="#">Sobre Nosotros</a>
+            <a href="#">Servicios</a>
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Términos y Condiciones</a>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Plataforma de Eventos Tecnologicos Perú. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+  <!-- Boton de volver al inicio -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+
+</html>
