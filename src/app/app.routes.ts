@@ -84,7 +84,14 @@ export const routes: Routes = [
       ),
   },
   
-
+  {
+    path: 'ponente-dashboard/reportes',
+    loadComponent: () =>
+      import('./pages/reportes/reportes.component').then(
+        (m) => m.ReportesComponent
+      ),
+  },
+  
   /////////////////////
 
   // Ruta para el dashboard después de iniciar sesión

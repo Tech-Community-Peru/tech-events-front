@@ -1,0 +1,55 @@
+<div class="reportes-container">
+    <h2 class="reportes-title">Reportes de Participación</h2>
+  
+    <form [formGroup]="reportesForm" class="reportes-form">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>ID del Evento</mat-label>
+        <input matInput formControlName="eventoId" placeholder="Ingresa el ID del evento" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>ID del Participante</mat-label>
+        <input matInput formControlName="participanteId" placeholder="Ingresa el ID del participante" />
+      </mat-form-field>
+  
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="consultarEscaneosPorEvento()">
+          Consultar Escaneos por Evento
+        </button>
+        <button mat-raised-button color="accent" (click)="consultarEscaneosPorParticipante()">
+          Consultar Escaneos por Participante
+        </button>
+        <button mat-raised-button color="warn" (click)="listarEscaneosPorEvento()">
+          Listar Escaneos por Evento
+        </button>
+      </div>
+    </form>
+  
+    <!-- Resultados -->
+    <div *ngIf="totalEscaneosEvento !== null">
+      <h3>Total Escaneos del Evento: {{ totalEscaneosEvento }}</h3>
+    </div>
+    <div *ngIf="totalEscaneosParticipante !== null">
+      <h3>Total Escaneos del Participante: {{ totalEscaneosParticipante }}</h3>
+    </div>
+  
+    <!-- Gráfico -->
+    <canvas id="grafico"></canvas>
+  
+    <!-- Lista de Escaneos -->
+    <div *ngIf="detallesEscaneos.length > 0">
+      <h3>Detalles de Escaneos:</h3>
+      <ul>
+        <li *ngFor="let escaneo of detallesEscaneos">
+          Participante: {{ escaneo.participanteNombre }} - Fecha: {{ escaneo.fechaEscaneo }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="back-button">
+        <button mat-stroked-button color="accent" routerLink="/ponente-dashboard">
+          Regresar al Dashboard
+        </button>
+      </div>
+  </div>
+  
