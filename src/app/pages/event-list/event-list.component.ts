@@ -16,7 +16,7 @@ import { TypeEvent } from '../../shared/models/typeEvent.model'; // Importar el 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FormsModule, ReactiveFormsModule, MatInputModule, RouterLink],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatInputModule],
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.css']
 })
