@@ -33,7 +33,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'ponente-profile/modificarPerfil',
+    path: 'ponente-profile/modificar-perfil',
     loadComponent: () =>
       import('./shared/components/update-profile-ponente/update-profile-ponente.component').then(
         (m) => m.UpdateProfilePonenteComponent
@@ -92,7 +92,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'userprofile/modificarPerfil',
+    path: 'user-profile/modificar-perfil',
     loadComponent: () =>
       import('./shared/components/update-profile/update-profile.component').then(
         (m) => m.UpdateProfileComponent

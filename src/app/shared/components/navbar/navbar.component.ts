@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import { AuthService } from '../../../core/service/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from '../../../core/service/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   private authService = inject(AuthService);
   isAuthenticated: boolean = false;
   private router = inject(Router);
@@ -21,6 +21,7 @@ export class NavbarComponent {
   logout(): void {
     this.authService.logout();
     this.isAuthenticated = false;
+    this.router.navigateByUrl('/');
   }
 
   back() {

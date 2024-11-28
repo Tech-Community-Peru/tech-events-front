@@ -9,6 +9,7 @@ import {ActualizarPerfilRequest} from '../../models/actualizarperfil-request.mod
 import {RegisterResponse} from '../../models/register-response.model';
 import {RegisterResponsePonente} from '../../models/register-responsePonente.model';
 import {ActualizarperfilRequestPonente} from '../../models/actualizarperfil-request-ponente.model';
+import {AuthService} from '../../../core/service/auth.service';
 
 @Component({
   selector: 'app-update-profile',
@@ -29,6 +30,7 @@ export class UpdateProfilePonenteComponent {
   private snackBar = inject(MatSnackBar);
   private perfilService = inject(PerfilService);
   private storageService = inject(StorageService);
+  private authService = inject(AuthService);
 
   constructor() {
     this.updateProfileForm = this.fb.group({
@@ -65,8 +67,14 @@ export class UpdateProfilePonenteComponent {
         }
 
         this.snackBar.open('Perfil actualizado exitosamente.', 'Cerrar', { duration: 3000 });
-        this.router.navigate(['/ponente-profile']);
-      },
+
+          if(this.authService.getUser()?.rol==='Ponente')
+          {
+            this.router.navigateByUrl('/ponente-profile');
+          }
+          else{
+            this.router.navigateByUrl('/auth/login');
+          }},
       error: (err) => {
         console.error('Error al actualizar perfil:', err.message);
         this.snackBar.open(err.message || 'Hubo un error al actualizar el perfil.', 'Cerrar', { duration: 3000 });
