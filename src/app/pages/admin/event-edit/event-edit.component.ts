@@ -58,7 +58,7 @@ export class EventEditComponent implements OnInit {
       this.eventService.updateEvent(eventId, updatedEvent).subscribe(
         (response) => {
           console.log('Evento actualizado:', response);
-          this.router.navigate(['/events']); // Redirigir después de actualizar
+          this.router.navigate(['/eventos-admin']); // Redirigir después de actualizar
         },
         (error) => {
           console.error('Error al actualizar el evento:', error);
@@ -70,6 +70,6 @@ export class EventEditComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/events']);
+    this.router.navigate(['/eventos-admin']);
   }
 }

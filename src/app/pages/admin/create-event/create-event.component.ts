@@ -21,6 +21,14 @@ export class CreateEventComponent {
   ];
   eventTypes = ['VIRTUAL', 'PRESENCIAL'];
 
+  nombrePonente = ['Juan', 'Maria', 'Carlos'];
+
+  comunidades = ['Ciberseguridad Perú', 'Big Data México', 'Blockchain España',
+  'IA Argentina', 'Cloud Chile', 'DevOps Colombia', 'Innovación Ecuador', 'Machine Learning Uruguay'];
+
+  lugares = ['Auditorio Lima', 'Centro de Convenciones CDMX', 'Auditorio Madrid', 'Hotel Hilton Buenos Aires',
+    'Centro de Innovación Santiago', 'Conferencia Bogotá', 'Centro Quito', 'Auditorio Montevideo'];
+
   constructor(
     private fb: FormBuilder,
     private createEventService: CreateEventService,
@@ -32,9 +40,9 @@ export class CreateEventComponent {
       descripcion: ['', [Validators.required, Validators.maxLength(500)]],
       eventoCategoria: ['', Validators.required],
       tipoEvento: ['', Validators.required],
-      nombreUbicacion: [''],
-      ponente: [''],
-      comunidad: [''],
+      nombreUbicacion: ['', Validators.required],
+      ponente: ['', Validators.required],
+      comunidad: ['', Validators.required],
     });
   }
 
@@ -45,7 +53,7 @@ export class CreateEventComponent {
       this.createEventService.createEvent(formValue).subscribe({
         next: () => {
           alert('Evento creado exitosamente');
-          this.router.navigate(['/event-list']);
+          this.router.navigate(['/eventos-admin']);
         },
         error: (err) => {
           console.error('Error al crear el evento', err);
@@ -53,5 +61,9 @@ export class CreateEventComponent {
         },
       });
     }
+  }
+
+  goBack() {
+    this.router.navigate(['/eventos-admin']);
   }
 }

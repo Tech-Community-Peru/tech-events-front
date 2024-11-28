@@ -85,7 +85,7 @@ export class EventListAdminComponent implements OnInit {
       sessionStorage.setItem('selectedEvent', JSON.stringify(selectedEvent));
 
       // Redirige a la página de detalles
-      this.router.navigate([`/events/:${id}`]);
+      this.router.navigate([`/eventos-admin/:${id}`]);
     } else {
       console.error('Evento no encontrado');
     }
