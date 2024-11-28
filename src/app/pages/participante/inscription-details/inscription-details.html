@@ -19,6 +19,14 @@
         <p class="card-text"><strong>Costo:</strong> {{ selectedEvent.costo | currency }}</p>
       </div>
       <div class="card-footer text-end">
+        <!-- Botón para Cancelar Inscripción -->
+        <button
+          class="btn btn-danger mt-3"
+          *ngIf="userRole === 'Participante'"
+          (click)="cancelInscripcion(selectedEvent.id)"
+        >
+          <i class="bi bi-x-circle"></i> Cancelar Inscripción
+        </button>
       </div>
     </div>
   </div>
