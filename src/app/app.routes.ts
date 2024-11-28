@@ -1,18 +1,18 @@
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import {CreateEventComponent} from './pages/admin/create-event/create-event.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
-  // Ruta por defecto: si no está autenticado, ir al login
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+ // Ruta inicial al HomeComponent
+ { path: '', component: HomeComponent },
 
-  // Ruta para la autenticación
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('./pages/auth/auth.routes').then((a) => a.authRoutes),
-
-  },
+ // Ruta para autenticación
+ {
+   path: 'auth',
+   loadChildren: () =>
+     import('./pages/auth/auth.routes').then((a) => a.authRoutes),
+ },
 //////////ADMINISTRADOR//////////
 
 { path: 'create-event', component: CreateEventComponent, canActivate: [authGuard] },
