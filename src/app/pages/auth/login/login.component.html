@@ -1,9 +1,6 @@
 <body class="body-login d-flex flex-column min-vh-100">
     <div class="wrapper-login">
       <main>
-        <div class="kanit-light d-grid gap-2 d-md-flex justify-content-end pe-4 mt-4">
-          <a href="/index.html"><button type="button" class="btn btn-danger btn-lg">Volver</button></a>
-        </div>
         <div class="conten-page-login">
           <div class="container d-flex justify-content-center h-login">
             <div class="login">
@@ -12,7 +9,7 @@
               </div>
               <div class="d-flex justify-content-center">
                 <form [formGroup]="loginForm" class="mt-4" action="" (ngSubmit)="onSubmit()">
-    
+
                   <div class="d-flex justify-content-center">
                     <mat-form-field class="form-field">
                       <input matInput type="text" formControlName="email" name="email" class="kanit-light nullShadow" placeholder="Email">
@@ -20,23 +17,26 @@
                       <mat-error *ngIf="controlHasError('email', 'email')">Introduzca un correo electrónico válido</mat-error>
                     </mat-form-field>
                   </div>
-    
+
                   <div class="d-flex justify-content-center">
                     <mat-form-field class="form-field">
                       <input matInput type="password" formControlName="password" name="contrasenia" class="kanit-light nullShadow" placeholder="Contraseña">
                       <mat-error *ngIf="controlHasError('password', 'required')">Este campo es obligatorio</mat-error>
                     </mat-form-field>
                   </div>
-    
-                  <div class="d-flex flex-wrap justify-content-between py-2">
-                    <button mat-raised-button color="primary" class="submit-button"  [disabled]="loginForm.invalid">
+
+                  <div class="d-flex flex-column align-items-center py-2">
+                    <button mat-raised-button color="primary" class="submit-button mb-2" [disabled]="loginForm.invalid">
                       Iniciar Sesión
                     </button>
-                    <button mat-raised-button routerLink="/auth/register" type="button" class="">
-                      Registrarme
+                    <button mat-raised-button routerLink="/auth/register" type="button" class="mb-2">
+                      Registrarme como Participante
+                    </button>
+                    <button mat-raised-button routerLink="/auth/register-ponente" type="button" class="mb-2">
+                      Registrarme como Ponente
                     </button>
                   </div>
-    
+
                 </form>
               </div>
             </div>

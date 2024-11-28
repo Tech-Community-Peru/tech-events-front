@@ -1,0 +1,87 @@
+/* Fondo degradado */
+.asistencia-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #3a82f7, #8a2be2); /* Azul a morado */
+  padding: 20px;
+  color: #fff; /* Texto blanco para mayor contraste */
+}
+
+/* Contenedor principal */
+.asistencia-container {
+  background: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Título principal */
+.asistencia-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+/* Contenedor de cada formulario */
+.asistencia-form-container {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 32px;
+}
+
+/* Subtítulos */
+.asistencia-subtitle {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+/* Formulario */
+.asistencia-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+/* Botones */
+button {
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* Lista de participantes */
+.participants-list {
+  margin-top: 24px;
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+}
+
+.participants-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.participants-list li {
+  background: #f9f9f9;
+  color: #333;
+  padding: 8px;
+  margin: 4px 0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

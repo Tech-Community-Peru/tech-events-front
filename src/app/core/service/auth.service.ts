@@ -1,13 +1,17 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import {catchError, Observable, tap} from 'rxjs';
 
 import { StorageService } from './storage.service';
 import { AuthRequest } from '../../shared/models/auth-request.model';
 import { AuthResponse } from '../../shared/models/auth-response.model';
 import { RegisterRequest } from '../../shared/models/register-request.model';
 import { RegisterResponse } from '../../shared/models/register-response.model';
+import { RegisterRequestPonente } from '../../shared/models/register-requestPonente.model';
+import { RegisterResponsePonente } from '../../shared/models/register-responsePonente.model';
 import { environment } from '../../../environments/environment';
+import {Router} from '@angular/router';
+import {ActualizarPerfilResponse} from '../../shared/models/actualizarperfil-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +20,7 @@ export class AuthService {
   private baseURL = `${environment.baseURL}/auth`;
   private http = inject(HttpClient);
   private storageService = inject(StorageService);
+  private router = inject(Router);
 
   // Señal para el estado de autenticación
   private isAuthenticatedSignal = signal(this.isAuthenticated());
@@ -24,17 +29,53 @@ export class AuthService {
 
   // Método para el login
   login(authRequest: AuthRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseURL}/login`, authRequest).pipe(
+  return this.http.post<AuthResponse>(`${this.baseURL}/login`, authRequest).pipe(
+    tap(response => {
+      this.storageService.setAuthData(response);
+      this.isAuthenticatedSignal.set(true); // Actualiza la señal a `true` después de un inicio exitoso
+    }),
+    catchError(error => {
+      console.error('Error durante el inicio de sesión:', error);
+      throw error;
+    })
+  );
+}
+
+  // Método para el registro
+  register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>(`${this.baseURL}/register/participante`, registerRequest).pipe(
       tap((response) => {
-        this.storageService.setAuthData(response);
-        this.isAuthenticatedSignal.set(true); // Cambia la señal de autenticación a true
+        // Almacenamos en localStorage solo el idParticipante
+        this.storageService.setRegisterData(response);
+        this.isAuthenticatedSignal.set(true);
+      }),
+      catchError((error) => {
+        console.error('Error al registrar participante:', error);
+        throw error;
       })
     );
   }
 
-  // Método para el registro
-  register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(`${this.baseURL}/register/participante`, registerRequest);
+  // Registro de ponente
+  registerPonente(registerRequest: RegisterRequestPonente): Observable<RegisterResponsePonente> {
+    return this.http.post<RegisterResponsePonente>(`${this.baseURL}/register/ponente`, registerRequest).pipe(
+      tap((response) => {
+        const registerData = {
+          id: response.id,
+          correoElectronico: response.correoElectronico,
+          idPonente: response.idPonente, // Convert idPonente to idParticipante
+          nombre: response.nombre,
+          apellido: response.apellido,
+          cargo: response.cargo,
+          especialidad: response.especialidad,
+          paisOrigen: response.paisOrigen,
+
+        };
+
+        this.storageService.setRegisterPonenteData(registerData);
+        this.isAuthenticatedSignal.set(true);
+      })
+    );
   }
 
   // Método para el logout
@@ -64,4 +105,24 @@ export class AuthService {
     const authData = this.storageService.getAuthData();
     return authData ? authData : null;
   }
+  getUsuarioooo(): ActualizarPerfilResponse | null {
+    const registerData = this.storageService.getActPerf();
+    return registerData ? registerData : null;
+  }
+
+  getPonente(): ActualizarPerfilResponse | null {
+    const registerData = this.storageService.getRegisterPonenteData();
+    return registerData ? registerData : null;
+  }
+
+  getPonenteee(): ActualizarPerfilResponse | null {
+    const registerData = this.storageService.getActPerf();
+    return registerData ? registerData : null;
+  }
+
+  getCorreo(): string | null {
+    const registerData = this.storageService.getRegisterData()?.correoElectronico;
+    return registerData ? registerData : null;
+  }
+
 }

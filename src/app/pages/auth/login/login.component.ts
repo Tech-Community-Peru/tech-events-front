@@ -52,12 +52,26 @@ export class LoginComponent {
 
     const credentials: AuthRequest = this.loginForm.value;
 
-    this.authService.login(credentials).subscribe({
-      next: () => {
+    this.authService.login(credentials).subscribe(
+      {
+      next: (authData) => {
+        console.log('Datos de logeo:', authData);
         this.showSnackBar('Inicio de sesión exitoso');
         // Redirigir al dashboard
-        this.router.navigate(['/dashboard']);
+
+        if (this.authService.getUser()?.rol === 'Ponente')
+        {
+          this.router.navigateByUrl('/ponente-dashboard');
+        } else {
+          if(this.authService.getUser()?.rol==='Participante')
+            {
+              this.router.navigateByUrl('/dashboard');
+            }else{
+              this.router.navigateByUrl('/admin-dashboard');
+            }
+        }
       },
+
       error: (err) => {
         // Manejar el error del backend
         const errorMessage = err.error?.message || 'Error en el inicio de sesión. Por favor, intenta de nuevo.';
