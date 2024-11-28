@@ -3,11 +3,13 @@ import { NavbarComponent } from "../../../shared/components/navbar/navbar.compon
 import { FooterComponent } from "../../../shared/components/footer/footer.component";
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/service/auth.service';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-ponente-dashboard',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, RouterModule],
+  imports: [NavbarComponent, FooterComponent, RouterModule, CommonModule, RouterLink],
   templateUrl: './ponente-dashboard.component.html',
   styleUrls: ['./ponente-dashboard.component.css'],
 })
