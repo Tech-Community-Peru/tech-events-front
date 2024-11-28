@@ -76,6 +76,15 @@ export const routes: Routes = [
       ),
   },
 
+  {
+    path: 'ponente-dashboard/asistencias',
+    loadComponent: () =>
+      import('./pages/asistencia/asistencia.component').then(
+        (m) => m.AsistenciaComponent
+      ),
+  },
+  
+
   /////////////////////
 
   // Ruta para el dashboard después de iniciar sesión
@@ -87,7 +96,6 @@ export const routes: Routes = [
       ),
       canActivate:[authGuard]
   },
-
 
 
 
