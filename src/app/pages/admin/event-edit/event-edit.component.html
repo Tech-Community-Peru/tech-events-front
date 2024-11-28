@@ -1,0 +1,99 @@
+<div class="wrapper-event-list">
+  <div class="container my-5">
+    <!-- Botón para regresar -->
+    <div class="mb-4">
+      <button class="btn btn-danger" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i> Regresar
+      </button>
+    </div>
+
+    <!-- Formulario para modificar evento -->
+    <div *ngIf="evento" class="card">
+      <div class="card-header bg-warning text-white">
+        <h2 class="card-title">Modificar Evento: {{ evento.nombre }}</h2>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="eventForm">
+          <!-- Nombre del evento -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre del Evento</label>
+            <input
+              type="text"
+              id="nombre"
+              class="form-control"
+              formControlName="nombre"
+              required
+            />
+          </div>
+
+          <!-- Descripción -->
+          <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea
+              id="descripcion"
+              class="form-control"
+              formControlName="descripcion"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Categoría -->
+          <div class="mb-3">
+            <label for="eventoCategoria" class="form-label">Categoría</label>
+            <select
+              id="eventoCategoria"
+              class="form-select"
+              formControlName="eventoCategoria"
+              required
+            >
+              <option *ngFor="let category of categories" [value]="category">
+                {{ category }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Tipo de evento -->
+          <div class="mb-3">
+            <label for="tipoEvento" class="form-label">Tipo de Evento</label>
+            <select
+              id="tipoEvento"
+              class="form-select"
+              formControlName="tipoEvento"
+              required
+            >
+              <option *ngFor="let type of eventTypes" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Costo -->
+          <div class="mb-3">
+            <label for="costo" class="form-label">Costo</label>
+            <input
+              type="number"
+              id="costo"
+              class="form-control"
+              formControlName="costo"
+              required
+            />
+          </div>
+
+
+
+          <!-- Botón para guardar cambios -->
+          <div class="text-end">
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="eventForm.invalid"
+            >
+              <i class="bi bi-save"></i> Guardar Cambios
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

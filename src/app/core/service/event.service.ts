@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { EventoResponse } from '../../shared/models/evento-response.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
+  private apiUrl = `${environment.baseURL}/eventocu`;
+
+  constructor(private http: HttpClient) {}
   private selectedEventSubject = new BehaviorSubject<EventoResponse | null>(null);
   selectedEvent$ = this.selectedEventSubject.asObservable();
 
@@ -15,5 +20,8 @@ export class EventService {
 
   getSelectedEvent(): EventoResponse | null {
     return this.selectedEventSubject.getValue();
+  }
+  updateEvent(id: string, event: any) {
+    return this.http.put(`${this.apiUrl}/update/${id}`, event);
   }
 }

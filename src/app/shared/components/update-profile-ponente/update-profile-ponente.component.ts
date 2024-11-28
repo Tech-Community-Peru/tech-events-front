@@ -14,7 +14,7 @@ import {AuthService} from '../../../core/service/auth.service';
 @Component({
   selector: 'app-update-profile',
   standalone: true,
-  imports: [
+   imports: [
     RouterLink, CommonModule, FormsModule, ReactiveFormsModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

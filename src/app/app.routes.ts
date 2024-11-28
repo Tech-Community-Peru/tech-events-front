@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import {CreateEventComponent} from './pages/admin/create-event/create-event.component';
 
 export const routes: Routes = [
   // Ruta por defecto: si no está autenticado, ir al login
@@ -12,7 +13,42 @@ export const routes: Routes = [
       import('./pages/auth/auth.routes').then((a) => a.authRoutes),
 
   },
+//////////ADMINISTRADOR//////////
 
+{ path: 'create-event', component: CreateEventComponent, canActivate: [authGuard] },
+  {
+    path: 'edit-event/:id',
+    loadComponent: () =>
+      import('./pages/admin/event-edit/event-edit.component').then(
+        (m) => m.EventEditComponent
+      ),
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'eventos-admin',
+    loadComponent: () =>
+      import('./pages/admin/event-list-admin/event-list-admin.component').then(
+        (m) => m.EventListAdminComponent
+      ),
+  },
+
+  {
+    path: 'eventos-admin/:id',
+    loadComponent: () =>
+      import('./pages/admin/event-detail-admin/event-detail-admin.component').then(
+        (m) => m.EventDetailAdminComponent
+      ),
+  },
+
+  {
+    path: 'admin-dashboard',
+    loadComponent: () =>
+      import('./pages/admin/admin-dashboard/admin-dashboard.component').then(
+        (m) => m.AdminDashboardComponent
+      ),
+    canActivate: [authGuard],
+  },
 
   //////////PONENTE//////////
   {

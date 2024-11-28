@@ -25,12 +25,16 @@ export class NavbarComponent implements OnInit {
   }
 
   back() {
-    if(this.authService.getUser()?.rol==='Ponente')
+    if (this.authService.getUser()?.rol === 'Ponente')
     {
       this.router.navigateByUrl('/ponente-dashboard');
-    }
-    else{
-      this.router.navigateByUrl('/dashboard');
+    } else {
+      if(this.authService.getUser()?.rol==='Participante')
+      {
+        this.router.navigateByUrl('/dashboard');
+      }else{
+        this.router.navigateByUrl('/admin-dashboard');
+      }
     }
   }
 
@@ -40,7 +44,12 @@ export class NavbarComponent implements OnInit {
       this.router.navigateByUrl('/ponente-profile');
     }
     else{
-      this.router.navigateByUrl('/user-profile');
+      if(this.authService.getUser()?.rol==='Participante')
+      {
+        this.router.navigateByUrl('/user-profile');
+      }else{
+        this.router.navigateByUrl('/admin-dashboard');
+      }
     }
   }
 }
