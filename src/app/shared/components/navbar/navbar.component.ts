@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
     else{
       if(this.authService.getUser()?.rol==='Participante')
       {
-        this.router.navigateByUrl('/participante-profile');
+        this.router.navigateByUrl('/user-profile');
       }else{
         this.router.navigateByUrl('/admin-dashboard');
       }

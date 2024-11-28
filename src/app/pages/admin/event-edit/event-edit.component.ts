@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'; // Asegúrate de importar ReactiveFormsModule
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { EventService } from '../../../core/service/event.service';
@@ -7,13 +7,20 @@ import { EventService } from '../../../core/service/event.service';
 @Component({
   selector: 'app-event-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], // Incluye ReactiveFormsModule aquí
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './event-edit.component.html',
-  styleUrls: ['./event-edit.component.css']
+  styleUrls: ['./event-edit.component.css'],
 })
 export class EventEditComponent implements OnInit {
   eventForm: FormGroup;
   evento: any;
+
+  // Opciones disponibles para los campos tipo enum
+  categories = [
+    'BIG_DATA', 'CIBERSEGURIDAD', 'MACHINE_LEARNING', 'INTELIGENCIA_ARTIFICIAL',
+    'CLOUD', 'DEVOPS', 'INNOVACION', 'BLOCKCHAIN',
+  ];
+  eventTypes = ['VIRTUAL', 'PRESENCIAL'];
 
   constructor(
     private fb: FormBuilder,
@@ -21,51 +28,51 @@ export class EventEditComponent implements OnInit {
     private router: Router
   ) {
     this.eventForm = this.fb.group({
-      nombre: ['', [Validators.required]],
-      costo: [0, [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      eventoCategoria: ['BIG_DATA', [Validators.required]],
-      tipoEvento: ['VIRTUAL', [Validators.required]],
-      nombreUbicacion: ['', [Validators.required]],
-      ponente: ['', [Validators.required]],
-      comunidad: ['', [Validators.required]]
+      nombre: ['', [Validators.required, Validators.maxLength(100)]],
+      costo: [0, [Validators.required, Validators.min(0)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(500)]],
+      eventoCategoria: ['', Validators.required], // Corresponde a categoryEvent
+      tipoEvento: ['', Validators.required], // Corresponde a typeEvent
+
     });
   }
 
   ngOnInit(): void {
-    // Obtener el evento seleccionado desde el servicio
     const selectedEvent = this.eventService.getSelectedEvent();
     if (selectedEvent) {
-      this.evento = selectedEvent;  // Asigna el evento al componente
-      this.eventForm.patchValue(selectedEvent);  // Actualiza el formulario con los valores del evento
+      this.evento = selectedEvent; // Asigna el evento al componente
+      this.eventForm.patchValue(selectedEvent); // Rellena el formulario con los datos del evento
     } else {
       console.error('Evento no encontrado');
-      this.router.navigate(['/events']); // Redirige si no se encuentra un evento seleccionado
+      this.router.navigate(['/eventos-admin']); // Redirige si no se encuentra un evento seleccionado
     }
   }
 
   onSubmit(): void {
     if (this.eventForm.valid) {
       const updatedEvent = this.eventForm.value;
-      const eventId = this.evento?.id; // Asegúrate de que el ID esté presente
+      const eventId = this.evento?.id;
 
       if (!eventId) {
         console.error('El ID del evento no está disponible');
+        alert('Error: No se puede modificar el evento sin un ID válido');
         return;
       }
 
-      // Aquí, usa el ID en la URL
-      this.eventService.updateEvent(eventId, updatedEvent).subscribe(
-        (response) => {
+      this.eventService.updateEvent(eventId, updatedEvent).subscribe({
+        next: (response) => {
           console.log('Evento actualizado:', response);
+          alert('Evento actualizado exitosamente');
           this.router.navigate(['/eventos-admin']); // Redirigir después de actualizar
         },
-        (error) => {
-          console.error('Error al actualizar el evento:', error);
-        }
-      );
+        error: (err) => {
+          console.error('Error al actualizar el evento:', err);
+          alert('Hubo un error al actualizar el evento. Por favor, intenta nuevamente.');
+        },
+      });
     } else {
       console.error('Formulario inválido');
+      alert('El formulario contiene errores. Por favor, revisa los campos.');
     }
   }
 

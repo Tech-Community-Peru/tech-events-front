@@ -22,6 +22,6 @@ export class EventService {
     return this.selectedEventSubject.getValue();
   }
   updateEvent(id: string, event: any) {
-    return this.http.put(`http://localhost:8080/api/v1/eventocu/update/${id}`, event);
+    return this.http.put(`${this.apiUrl}/update/${id}`, event);
   }
 }
