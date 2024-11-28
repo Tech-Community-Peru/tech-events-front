@@ -62,26 +62,6 @@ export class AsistenciaComponent implements OnInit {
       }
     }
   
-    
-    onCheckAttendanceStatus() {
-        const { eventId, participantId } = this.statusForm.value;
-        console.log('Valores del formulario:', this.statusForm.value);
-        if (this.statusForm.valid) {
-          this.asistenciaService.checkAttendanceStatus(eventId, participantId).subscribe({
-            next: (status: string) => {
-              console.log('Estado de asistencia recibido:', status);
-              this.showSnackBar(status); // Mostrar estado recibido
-            },
-            error: (err: Error) => {
-              console.error('Error al verificar estado:', err.message);
-              this.showSnackBar('Error al verificar estado de asistencia.');
-            },
-          });
-        } else {
-          this.showSnackBar('Por favor completa los campos del formulario.');
-        }
-      }
-      
   
     onListActiveParticipants() {
         const { eventId } = this.activeParticipantsForm.value;

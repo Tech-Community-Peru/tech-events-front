@@ -1,69 +1,54 @@
 <section class="asistencia-section">
-    <div class="asistencia-container">
-      <h2 class="asistencia-title">Gestión de Asistencia</h2>
-  
-      <!-- Formulario para Registrar Asistencia -->
-      <div class="form-section">
-        <h3 class="asistencia-subtitle">Registrar Asistencia</h3>
-        <form [formGroup]="registerForm" class="asistencia-form">
-          <mat-form-field appearance="outline" class="form-field">
-            <mat-label>ID del Evento</mat-label>
-            <input matInput formControlName="eventId" placeholder="ID del evento" />
-            <mat-error *ngIf="registerForm.controls['eventId'].hasError('required')">
-              Este campo es obligatorio.
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="form-field">
-            <mat-label>ID del Participante</mat-label>
-            <input matInput formControlName="participantId" placeholder="ID del participante" />
-            <mat-error *ngIf="registerForm.controls['participantId'].hasError('required')">
-              Este campo es obligatorio.
-            </mat-error>
-          </mat-form-field>
-          <button mat-raised-button color="primary" type="button" (click)="onSubmit()" [disabled]="registerForm.invalid">
-            Registrar Asistencia
-          </button>
-        </form>
-      </div>
-  
-      <!-- Formulario para Verificar Estado -->
-      <div class="form-section">
-        <h3 class="asistencia-subtitle">Verificar Estado de Asistencia</h3>
-        <form [formGroup]="statusForm" class="asistencia-form">
-          <mat-form-field appearance="outline" class="form-field">
-            <mat-label>ID del Evento</mat-label>
-            <input matInput formControlName="eventId" placeholder="ID del evento" />
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="form-field">
-            <mat-label>ID del Participante</mat-label>
-            <input matInput formControlName="participantId" placeholder="ID del participante" />
-          </mat-form-field>
-          <button mat-raised-button color="accent" type="button" (click)="onCheckAttendanceStatus()" [disabled]="statusForm.invalid">
-            Verificar Estado
-          </button>
-        </form>
-      </div>
-  
-      <!-- Formulario para Listar Participantes Activos -->
-      <div class="form-section">
-        <h3 class="asistencia-subtitle">Participantes Activos en el Evento</h3>
-        <form [formGroup]="activeParticipantsForm" class="asistencia-form">
-          <mat-form-field appearance="outline" class="form-field">
-            <mat-label>ID del Evento</mat-label>
-            <input matInput formControlName="eventId" placeholder="ID del evento" />
-          </mat-form-field>
-          <button mat-raised-button color="warn" type="button" (click)="onListActiveParticipants()" [disabled]="activeParticipantsForm.invalid">
-            Mostrar Participantes Activos
-          </button>
-        </form>
-        <div *ngIf="activeParticipants && activeParticipants.length > 0" class="participants-list">
-          <ul>
-            <li *ngFor="let participant of activeParticipants">
-              {{ participant.nombre }} {{ participant.apellido }} (ID: {{ participant.id }})
-            </li>
-          </ul>
-        </div>
+  <div class="asistencia-container">
+    <h2 class="asistencia-title">Gestión de Asistencia</h2>
+    <div class="back-button">
+      <button mat-stroked-button color="accent" routerLink="/ponente-dashboard">
+        Regresar al Dashboard
+      </button>
+    </div>
+    <!-- Contenedor del Formulario para Registrar Asistencia -->
+    <div class="form-section asistencia-form-container">
+      <h3 class="asistencia-subtitle">Registrar Asistencia</h3>
+      <form [formGroup]="registerForm" class="asistencia-form">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>ID del Evento</mat-label>
+          <input matInput formControlName="eventId" placeholder="ID del evento" />
+          <mat-error *ngIf="registerForm.controls['eventId'].hasError('required')">
+            Este campo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>ID del Participante</mat-label>
+          <input matInput formControlName="participantId" placeholder="ID del participante" />
+          <mat-error *ngIf="registerForm.controls['participantId'].hasError('required')">
+            Este campo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="button" (click)="onSubmit()" [disabled]="registerForm.invalid">
+          Registrar Asistencia
+        </button>
+      </form>
+    </div>
+
+    <!-- Contenedor del Formulario para Listar Participantes Activos -->
+    <div class="form-section asistencia-form-container">
+      <h3 class="asistencia-subtitle">Participantes Activos en el Evento</h3>
+      <form [formGroup]="activeParticipantsForm" class="asistencia-form">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>ID del Evento</mat-label>
+          <input matInput formControlName="eventId" placeholder="ID del evento" />
+        </mat-form-field>
+        <button mat-raised-button color="warn" type="button" (click)="onListActiveParticipants()" [disabled]="activeParticipantsForm.invalid">
+          Mostrar Participantes Activos
+        </button>
+      </form>
+      <div *ngIf="activeParticipants && activeParticipants.length > 0" class="participants-list">
+        <ul>
+          <li *ngFor="let participant of activeParticipants">
+            {{ participant.nombre }} {{ participant.apellido }} (ID: {{ participant.id }})
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>

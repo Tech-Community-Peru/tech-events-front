@@ -21,17 +21,7 @@ export class AsistenciaService {
     );
   }
 
-  checkAttendanceStatus(eventId: number, participantId: number): Observable<string> {
-    const url = `${environment.baseURL}/asistencia/estado/${eventId}/${participantId}`;
-    return this.http.get<string>(url).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('Error al verificar estado:', error.message);
-        return throwError(() => new Error(error.message));
-      })
-    );
-  }
   
-
   getActiveParticipants(eventId: number): Observable<ParticipanteActivoDTO[]> {
     const url = `${environment.baseURL}/asistencia/activos/${eventId}`;
     return this.http.get<ParticipanteActivoDTO[]>(url).pipe(
