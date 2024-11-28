@@ -1,17 +1,24 @@
 <div class="wrapper-event-list">
   <div class="container my-4">
-    <h2 class="text-center mb-4">Lista de Eventos</h2>
+    <h2 class="text-center mb-4">Explora nuestros Eventos</h2>
 
-    <div class="mb-3 text-start">
+    <div class="mb-3 d-flex justify-content-between align-items-center">
+      <!-- Barra de búsqueda -->
+      <div class="search-container">
+        <input type="text" class="form-control" placeholder="Buscar por nombre o descripción..."
+          [(ngModel)]="searchTerm" (input)="searchEvents()" />
+      </div>
+      <!-- Botón de vuelta -->
       <button class="btn btn-danger" (click)="back()">
         <i class="bi bi-arrow-left"></i> Atras
       </button>
     </div>
 
-    <!-- Selector de Categoría -->
+    <!-- Filtro por Categoría -->
     <div class="mb-3">
       <label for="categorySelect" class="form-label">Filtrar por Categoría</label>
-      <select id="categorySelect" [(ngModel)]="selectedCategory" class="form-select" (change)="filterEvents()">
+      <select id="categorySelect" [(ngModel)]="selectedCategory" class="form-select"
+        (change)="filterEventsByCategory()">
         <option value="">Todas las Categorías</option>
         <option value="CIBERSEGURIDAD">Ciberseguridad</option>
         <option value="BIG_DATA">Big Data</option>
@@ -26,8 +33,9 @@
 
     <!-- Lista de Eventos -->
     <div class="row">
-      <h2 class="text-center mb-4">¡¡MIRA LOS DETALLES DE UN EVENTO E INSCRIBETE!!</h2>
+      <h2 class="text-center mb-4">Eventos Disponibles</h2>
 
+      <!-- Mostrar los eventos filtrados -->
       <div *ngFor="let event of filteredEvents" class="col-md-4 mb-3">
         <div class="card h-100">
           <div class="card-body">
@@ -46,7 +54,7 @@
 
     <!-- Mensaje si no hay eventos filtrados -->
     <div *ngIf="filteredEvents.length === 0" class="text-center">
-      <p class="text-muted">No se encontraron eventos para esta categoría.</p>
+      <p class="text-muted">No se encontraron eventos para esta categoría o búsqueda.</p>
     </div>
   </div>
 </div>

@@ -1,17 +1,4 @@
-.container {
-    max-width: 960px;
-  }
-
-  .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-  }
-
-  /* General Styles */
+/* General Styles */
 body.body-event-list, html.eventListHtml {
   margin: 0;
   padding: 0;
@@ -19,16 +6,42 @@ body.body-event-list, html.eventListHtml {
 }
 
 .wrapper-event-list {
-  position: relative; /* Cambiado de absolute a relative */
-  min-height: 100vh; /* Altura mínima para llenar la pantalla */
-  overflow-x: hidden; /* Deshabilitar el scroll horizontal */
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Fondo dinámico adaptado */
   background-image: radial-gradient(#1e90ff 0%, #0e5bad 100%);
+  background-size: cover; /* Asegura que el fondo cubra toda la pantalla */
 }
 
-.form-label{
+/* Estilo de las etiquetas */
+.form-label {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Barra de Búsqueda */
+.search-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
+}
+
+.search-container input {
+  border: none;
+  padding: 10px 15px;
+  width: 100%;
+  font-size: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.search-container input:focus {
+  border: 1px solid #007bff;
 }
 
 /* Container Styling */
@@ -42,16 +55,12 @@ h2.text-center {
   font-size: 2rem;
 }
 
-.row {
-  margin: 0 -15px;
-}
-
 /* Card Styling */
 .card {
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
   background-color: rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
@@ -82,6 +91,43 @@ h2.text-center {
   transform: scale(1.05);
 }
 
+/* Filtros y Botón de Regreso */
+.select-filter, .btn-danger {
+  border-radius: 20px;
+}
+
+.select-filter {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+select.form-select {
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+select.form-select:focus {
+  border-color: #007bff;
+}
+
+.btn-danger {
+  border-radius: 20px;
+  padding: 8px 16px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-danger:hover {
+  background-color: #dc3545;
+  transform: scale(1.05);
+}
+
+.row {
+  margin: 0 -15px;
+}
+
 /* Animations for Floating Elements */
 .box div {
   position: absolute;
@@ -104,7 +150,6 @@ h2.text-center {
   animation: animate 7s linear infinite;
 }
 
-/* Additional Floating Elements for Event List */
 .box div:nth-child(3) {
   top: 30%;
   left: 15%;
@@ -125,11 +170,11 @@ h2.text-center {
 
 @keyframes animate {
   0% {
-      transform: scale(0) translateY(0) rotate(0);
-      opacity: 1;
+    transform: scale(0) translateY(0) rotate(0);
+    opacity: 1;
   }
   100% {
-      transform: scale(1.5) translateY(-90px) rotate(360deg);
-      opacity: 0;
+    transform: scale(1.5) translateY(-90px) rotate(360deg);
+    opacity: 0;
   }
 }
