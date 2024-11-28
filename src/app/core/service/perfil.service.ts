@@ -36,13 +36,14 @@ export class PerfilService {
 
   actualizarPerfil(actualizarPerfilRequest: ActualizarPerfilRequest): Observable<string> {
 
-    const idParticipante = this.storageService.getAuthData()?.idParticipante;
-    if (!idParticipante) {
-      console.error('ID de participante no encontrado en el almacenamiento.');
-      throw new Error('No se encontró el ID del participante. Verifica tu autenticación.');
+    const id = this.storageService.getAuthData()?.idUsuario;
+    console.log('ID:', id);
+    if (!id) {
+      console.error('ID no encontrado en el almacenamiento.');
+      throw new Error('No se encontró el ID. Verifica tu autenticación.');
     }
 
-    const url = `${this.baseURL}/${idParticipante}`;
+    const url = `${this.baseURL2}/${id}`;
     console.log('Sending PUT request to:', url);
 
 
@@ -60,7 +61,7 @@ export class PerfilService {
     );
   }
 
-  actualizarPerfilPonente(actualizarperfilRequestPonente: ActualizarperfilRequestPonente): Observable<string> {
+  actualizarPerfilPonente(actualizarPerfilRequest: ActualizarPerfilRequest): Observable<string> {
 
     const id = this.storageService.getAuthData()?.idUsuario;
     console.log('ID:', id);
@@ -73,7 +74,7 @@ export class PerfilService {
     console.log('Sending PUT request to:', url);
 
 
-    return this.http.put<string>(url, actualizarperfilRequestPonente, { responseType: 'text' as 'json' }).pipe(
+    return this.http.put<string>(url, actualizarPerfilRequest, { responseType: 'text' as 'json' }).pipe(
       tap((response) => {
         console.log('Respuesta del servidor:', response);
         // Si el servidor devuelve texto, no podemos usar directamente `setRegisterData`.

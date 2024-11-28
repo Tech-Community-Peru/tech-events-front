@@ -4,7 +4,6 @@ export interface RegisterResponse {
   idParticipante: number;
   nombre: string;
   apellido: string;
-  cargo: string | null;
   especialidad: string | null;
   paisOrigen: string;
 

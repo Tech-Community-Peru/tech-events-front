@@ -27,7 +27,7 @@ export class StorageService {
 }
 
   getRegisterData(): RegisterResponse | null {
-    const data = localStorage.getItem(this.registerKey);
+    const data = localStorage.getItem(this.authkey);
     return data? JSON.parse(data) as RegisterResponse: null;
   }
 
@@ -64,7 +64,18 @@ export class StorageService {
     if (!authData) {
       throw new Error('No authentication data found');
     }
-    return authData.idParticipante;
+    return authData.idParticipante || 0;
   }
+
+  getActPerf(): AuthResponse | null {
+    const data = localStorage.getItem(this.authkey);
+    return data? JSON.parse(data) as AuthResponse: null;
+  }
+
+  setActPerf(data: AuthResponse): void {
+    localStorage.setItem(this.authkey, JSON.stringify(data));
+    console.log('Datos registrados en localStorage:', data);
+  }
+
 
 }
