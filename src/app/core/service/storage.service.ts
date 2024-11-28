@@ -27,7 +27,7 @@ export class StorageService {
 }
 
   getRegisterData(): RegisterResponse | null {
-    const data = localStorage.getItem(this.registerKey);
+    const data = localStorage.getItem(this.authkey);
     return data? JSON.parse(data) as RegisterResponse: null;
   }
 

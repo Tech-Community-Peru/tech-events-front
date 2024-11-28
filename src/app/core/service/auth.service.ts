@@ -28,11 +28,16 @@ export class AuthService {
 
   // Método para el login
   login(authRequest: AuthRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseURL}/login`, authRequest).pipe(
-        tap(response => this.storageService.setAuthData(response))
-
-    );
-
+  return this.http.post<AuthResponse>(`${this.baseURL}/login`, authRequest).pipe(
+    tap(response => {
+      this.storageService.setAuthData(response);
+      this.isAuthenticatedSignal.set(true); // Actualiza la señal a `true` después de un inicio exitoso
+    }),
+    catchError(error => {
+      console.error('Error durante el inicio de sesión:', error);
+      throw error;
+    })
+  );
 }
 
   // Método para el registro
