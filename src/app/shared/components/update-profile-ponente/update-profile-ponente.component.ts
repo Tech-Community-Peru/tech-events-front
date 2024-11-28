@@ -10,6 +10,8 @@ import {RegisterResponse} from '../../models/register-response.model';
 import {RegisterResponsePonente} from '../../models/register-responsePonente.model';
 import {ActualizarperfilRequestPonente} from '../../models/actualizarperfil-request-ponente.model';
 import {AuthService} from '../../../core/service/auth.service';
+import {ActualizarPerfilResponse} from '../../models/actualizarperfil-response.model';
+import {AuthResponse} from '../../models/auth-response.model';
 
 @Component({
   selector: 'app-update-profile',
@@ -48,22 +50,22 @@ export class UpdateProfilePonenteComponent {
       return;
     }
 
-    const profileData: ActualizarperfilRequestPonente = this.updateProfileForm.value;
+    const profileData: ActualizarPerfilRequest = this.updateProfileForm.value;
 
     this.perfilService.actualizarPerfilPonente(profileData).subscribe({
       next: () => {
         // Recuperar los datos existentes del almacenamiento
-        const existingData = this.storageService.getRegisterPonenteData();
+        const existingData = this.storageService.getActPerf();
 
         if (existingData) {
           // Combinar los datos existentes con los actualizados
-          const updatedData: RegisterResponsePonente = {
+          const updatedData: AuthResponse = {
             ...existingData, // Mantén los campos existentes
             ...profileData,  // Sobrescribe con los datos actualizados
           };
 
           // Guardar los datos combinados en el almacenamiento
-          this.storageService.setRegisterPonenteData(updatedData);
+          this.storageService.setActPerf(updatedData);
         }
 
         this.snackBar.open('Perfil actualizado exitosamente.', 'Cerrar', { duration: 3000 });

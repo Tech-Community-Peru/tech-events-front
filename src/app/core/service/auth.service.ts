@@ -11,6 +11,7 @@ import { RegisterRequestPonente } from '../../shared/models/register-requestPone
 import { RegisterResponsePonente } from '../../shared/models/register-responsePonente.model';
 import { environment } from '../../../environments/environment';
 import {Router} from '@angular/router';
+import {ActualizarPerfilResponse} from '../../shared/models/actualizarperfil-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -104,13 +105,18 @@ export class AuthService {
     const authData = this.storageService.getAuthData();
     return authData ? authData : null;
   }
-  getUsuario(): RegisterResponse | null {
-    const registerData = this.storageService.getRegisterData();
+  getUsuarioooo(): ActualizarPerfilResponse | null {
+    const registerData = this.storageService.getActPerf();
     return registerData ? registerData : null;
   }
 
-  getPonente(): RegisterResponsePonente | null {
+  getPonente(): ActualizarPerfilResponse | null {
     const registerData = this.storageService.getRegisterPonenteData();
+    return registerData ? registerData : null;
+  }
+
+  getPonenteee(): ActualizarPerfilResponse | null {
+    const registerData = this.storageService.getActPerf();
     return registerData ? registerData : null;
   }
 

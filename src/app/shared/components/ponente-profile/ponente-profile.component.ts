@@ -6,6 +6,7 @@ import {AuthService} from '../../../core/service/auth.service';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {RegisterResponsePonente} from '../../models/register-responsePonente.model';
+import {ActualizarPerfilResponse} from '../../models/actualizarperfil-response.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,11 +19,11 @@ import {RegisterResponsePonente} from '../../models/register-responsePonente.mod
   styleUrl: './ponente-profile.component.css'
 })
 export class PonenteProfileComponent implements OnInit {
-  user: RegisterResponsePonente | null = null;
+  user: ActualizarPerfilResponse | null = null;
 
   constructor(private registerPonenteResponse: AuthService) {}
 
   ngOnInit(): void {
-    this.user = this.registerPonenteResponse.getPonente(); // Obtiene los datos del usuario desde el AuthService
+    this.user = this.registerPonenteResponse.getPonenteee(); // Obtiene los datos del usuario desde el AuthService
   }
 }
