@@ -19,8 +19,12 @@
         <p class="card-text"><strong>Costo:</strong> {{ selectedEvent.costo | currency }}</p>
       </div>
       <div class="card-footer text-end">
-        <!-- Botón para inscripción -->
-        <button class="btn btn-success" (click)="navigateToInscribirse(selectedEvent.id)">
+        <!-- Botón para inscripción (oculto si el usuario es PONENTE) -->
+        <button
+          class="btn btn-success"
+          *ngIf="userRole !== 'Ponente'"
+          (click)="navigateToInscribirse(selectedEvent.id)"
+        >
           <i class="bi bi-pencil-square"></i> Inscribirse en este Evento
         </button>
       </div>

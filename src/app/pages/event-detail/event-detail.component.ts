@@ -1,24 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, RouterLink, RouterModule} from '@angular/router';
-import {CommonModule} from '@angular/common';
-import {EventoResponse} from '../../shared/models/evento-response.model';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { EventoResponse } from '../../shared/models/evento-response.model';
 import { EventService } from '../../core/service/event.service';
 
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [RouterLink, CommonModule, ],
+  imports: [RouterLink, CommonModule],
   templateUrl: './event-detail.component.html',
-  styleUrl: './event-detail.component.css'
+  styleUrl: './event-detail.component.css',
 })
 export class EventDetailComponent implements OnInit {
-
   selectedEvent: EventoResponse | null = null;
+  userRole: string | null = null; // Nueva propiedad para almacenar el rol del usuario
 
-  constructor(
-    private router: Router,
-    private eventService: EventService
-  ) {}
+  constructor(private router: Router, private eventService: EventService) {}
 
   ngOnInit(): void {
     // Recupera los detalles del evento desde sessionStorage
@@ -31,6 +28,13 @@ export class EventDetailComponent implements OnInit {
       console.error('No se encontraron datos del evento seleccionado');
       this.router.navigate(['/events']);
     }
+
+    // Recuperar el rol del usuario desde el almacenamiento local
+    const loginData = localStorage.getItem('tech_auth');
+    if (loginData) {
+      const user = JSON.parse(loginData);
+      this.userRole = user.rol || null; // Asegúrate de que `role` es el campo correcto
+    }
   }
 
   goBack(): void {
@@ -42,11 +46,6 @@ export class EventDetailComponent implements OnInit {
       // Guarda los detalles del evento en el almacenamiento local
       sessionStorage.setItem('selectedEvent', JSON.stringify(this.selectedEvent));
       this.eventService.setSelectedEvent(this.selectedEvent);
-
-      const loginData = localStorage.getItem('tech_auth');
-      const token = loginData ? JSON.parse(loginData).token : null;
-
-
 
       // Redirige a la página de detalles
       this.router.navigate([`/events/:${id}/inscribirse`]);
