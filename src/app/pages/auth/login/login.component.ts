@@ -55,7 +55,6 @@ export class LoginComponent {
     this.authService.login(credentials).subscribe(
       {
       next: (authData) => {
-        console.log('Datos de logeo:', authData);
         this.showSnackBar('Inicio de sesión exitoso');
         // Redirigir al dashboard
 
